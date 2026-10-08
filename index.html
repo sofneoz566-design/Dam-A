@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>담아봐요</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<style>:root{color-scheme:light}html,body,#root{height:100%;margin:0}body{background:#DADFE2;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif}button{cursor:pointer;background:none;border:0;font-family:inherit}input,select{font-family:inherit}</style>
+</head><body><div id="root"></div>
+<script>(function(){var s={};try{window.__ls=window.localStorage}catch(e){}
+window.storage={get:async function(k){try{var v=window.__ls.getItem("dam:"+k);if(v==null)throw 0;return{key:k,value:v}}catch(e){throw new Error("nf")}},
+set:async function(k,v){try{window.__ls.setItem("dam:"+k,v)}catch(e){}return{key:k,value:v}}};})();</script>
+<script>"use strict";
+const ICONS = { "ArrowLeft": [{ "tag": "path", "attr": { "d": "m12 19-7-7 7-7" }, "child": [] }, { "tag": "path", "attr": { "d": "M19 12H5" }, "child": [] }], "Home": [{ "tag": "path", "attr": { "d": "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" }, "child": [] }, { "tag": "path", "attr": { "d": "M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" }, "child": [] }], "ShoppingCart": [{ "tag": "circle", "attr": { "cx": "8", "cy": "21", "r": "1" }, "child": [] }, { "tag": "circle", "attr": { "cx": "19", "cy": "21", "r": "1" }, "child": [] }, { "tag": "path", "attr": { "d": "M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" }, "child": [] }], "Search": [{ "tag": "circle", "attr": { "cx": "11", "cy": "11", "r": "8" }, "child": [] }, { "tag": "path", "attr": { "d": "m21 21-4.3-4.3" }, "child": [] }], "Heart": [{ "tag": "path", "attr": { "d": "M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" }, "child": [] }], "BarChart3": [{ "tag": "path", "attr": { "d": "M3 3v16a2 2 0 0 0 2 2h16" }, "child": [] }, { "tag": "path", "attr": { "d": "M18 17V9" }, "child": [] }, { "tag": "path", "attr": { "d": "M13 17V5" }, "child": [] }, { "tag": "path", "attr": { "d": "M8 17v-3" }, "child": [] }], "User": [{ "tag": "path", "attr": { "d": "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" }, "child": [] }, { "tag": "circle", "attr": { "cx": "12", "cy": "7", "r": "4" }, "child": [] }], "Bell": [{ "tag": "path", "attr": { "d": "M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" }, "child": [] }, { "tag": "path", "attr": { "d": "M10.3 21a1.94 1.94 0 0 0 3.4 0" }, "child": [] }], "ChevronRight": [{ "tag": "path", "attr": { "d": "m9 18 6-6-6-6" }, "child": [] }], "Plus": [{ "tag": "path", "attr": { "d": "M5 12h14" }, "child": [] }, { "tag": "path", "attr": { "d": "M12 5v14" }, "child": [] }], "Minus": [{ "tag": "path", "attr": { "d": "M5 12h14" }, "child": [] }], "X": [{ "tag": "path", "attr": { "d": "M18 6 6 18" }, "child": [] }, { "tag": "path", "attr": { "d": "m6 6 12 12" }, "child": [] }], "Star": [{ "tag": "path", "attr": { "d": "M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" }, "child": [] }], "PiggyBank": [{ "tag": "path", "attr": { "d": "M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2V5z" }, "child": [] }, { "tag": "path", "attr": { "d": "M2 9v1c0 1.1.9 2 2 2h1" }, "child": [] }, { "tag": "path", "attr": { "d": "M16 11h.01" }, "child": [] }], "Sprout": [{ "tag": "path", "attr": { "d": "M7 20h10" }, "child": [] }, { "tag": "path", "attr": { "d": "M10 20c5.5-2.5.8-6.4 3-10" }, "child": [] }, { "tag": "path", "attr": { "d": "M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z" }, "child": [] }, { "tag": "path", "attr": { "d": "M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z" }, "child": [] }], "CheckCircle2": [{ "tag": "circle", "attr": { "cx": "12", "cy": "12", "r": "10" }, "child": [] }, { "tag": "path", "attr": { "d": "m9 12 2 2 4-4" }, "child": [] }], "Truck": [{ "tag": "path", "attr": { "d": "M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" }, "child": [] }, { "tag": "path", "attr": { "d": "M15 18H9" }, "child": [] }, { "tag": "path", "attr": { "d": "M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" }, "child": [] }, { "tag": "circle", "attr": { "cx": "17", "cy": "18", "r": "2" }, "child": [] }, { "tag": "circle", "attr": { "cx": "7", "cy": "18", "r": "2" }, "child": [] }], "Leaf": [{ "tag": "path", "attr": { "d": "M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" }, "child": [] }, { "tag": "path", "attr": { "d": "M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" }, "child": [] }], "TreePine": [{ "tag": "path", "attr": { "d": "m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z" }, "child": [] }, { "tag": "path", "attr": { "d": "M12 22v-3" }, "child": [] }], "Shield": [{ "tag": "path", "attr": { "d": "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" }, "child": [] }], "Award": [{ "tag": "path", "attr": { "d": "m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" }, "child": [] }, { "tag": "circle", "attr": { "cx": "12", "cy": "8", "r": "6" }, "child": [] }], "Edit2": [{ "tag": "path", "attr": { "d": "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" }, "child": [] }, { "tag": "path", "attr": { "d": "m15 5 4 4" }, "child": [] }], "RotateCcw": [{ "tag": "path", "attr": { "d": "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" }, "child": [] }, { "tag": "path", "attr": { "d": "M3 3v5h5" }, "child": [] }], "Target": [{ "tag": "circle", "attr": { "cx": "12", "cy": "12", "r": "10" }, "child": [] }, { "tag": "circle", "attr": { "cx": "12", "cy": "12", "r": "6" }, "child": [] }, { "tag": "circle", "attr": { "cx": "12", "cy": "12", "r": "2" }, "child": [] }], "PenLine": [{ "tag": "path", "attr": { "d": "M12 20h9" }, "child": [] }, { "tag": "path", "attr": { "d": "M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z" }, "child": [] }], "Sparkles": [{ "tag": "path", "attr": { "d": "M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" }, "child": [] }, { "tag": "path", "attr": { "d": "M20 3v4" }, "child": [] }, { "tag": "path", "attr": { "d": "M22 5h-4" }, "child": [] }, { "tag": "path", "attr": { "d": "M4 17v2" }, "child": [] }, { "tag": "path", "attr": { "d": "M5 18H3" }, "child": [] }], "Shirt": [{ "tag": "path", "attr": { "d": "M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z" }, "child": [] }], "UtensilsCrossed": [{ "tag": "path", "attr": { "d": "m16 2-2.3 2.3a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L22 8" }, "child": [] }, { "tag": "path", "attr": { "d": "M15 15 3.3 3.3a4.2 4.2 0 0 0 0 6l7.3 7.3c.7.7 2 .7 2.8 0L15 15Zm0 0 7 7" }, "child": [] }, { "tag": "path", "attr": { "d": "m2.1 21.8 6.4-6.3" }, "child": [] }, { "tag": "path", "attr": { "d": "m19 5-7 7" }, "child": [] }], "KeyRound": [{ "tag": "path", "attr": { "d": "M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" }, "child": [] }, { "tag": "circle", "attr": { "cx": "16.5", "cy": "7.5", "r": ".5", "fill": "currentColor" }, "child": [] }], "PawPrint": [{ "tag": "circle", "attr": { "cx": "11", "cy": "4", "r": "2" }, "child": [] }, { "tag": "circle", "attr": { "cx": "18", "cy": "8", "r": "2" }, "child": [] }, { "tag": "circle", "attr": { "cx": "20", "cy": "16", "r": "2" }, "child": [] }, { "tag": "path", "attr": { "d": "M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z" }, "child": [] }], "Smartphone": [{ "tag": "rect", "attr": { "width": "14", "height": "20", "x": "5", "y": "2", "rx": "2", "ry": "2" }, "child": [] }, { "tag": "path", "attr": { "d": "M12 18h.01" }, "child": [] }], "Apple": [{ "tag": "path", "attr": { "d": "M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z" }, "child": [] }, { "tag": "path", "attr": { "d": "M10 2c1 .5 2 2 2 5" }, "child": [] }], "Gamepad2": [{ "tag": "line", "attr": { "x1": "6", "x2": "10", "y1": "11", "y2": "11" }, "child": [] }, { "tag": "line", "attr": { "x1": "8", "x2": "8", "y1": "9", "y2": "13" }, "child": [] }, { "tag": "line", "attr": { "x1": "15", "x2": "15.01", "y1": "12", "y2": "12" }, "child": [] }, { "tag": "line", "attr": { "x1": "18", "x2": "18.01", "y1": "10", "y2": "10" }, "child": [] }, { "tag": "path", "attr": { "d": "M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" }, "child": [] }], "HeartPulse": [{ "tag": "path", "attr": { "d": "M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" }, "child": [] }, { "tag": "path", "attr": { "d": "M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" }, "child": [] }], "Dumbbell": [{ "tag": "path", "attr": { "d": "M14.4 14.4 9.6 9.6" }, "child": [] }, { "tag": "path", "attr": { "d": "M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z" }, "child": [] }, { "tag": "path", "attr": { "d": "m21.5 21.5-1.4-1.4" }, "child": [] }, { "tag": "path", "attr": { "d": "M3.9 3.9 2.5 2.5" }, "child": [] }, { "tag": "path", "attr": { "d": "M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z" }, "child": [] }], "Check": [{ "tag": "path", "attr": { "d": "M20 6 9 17l-5-5" }, "child": [] }], "Package": [{ "tag": "path", "attr": { "d": "M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" }, "child": [] }, { "tag": "path", "attr": { "d": "M12 22V12" }, "child": [] }, { "tag": "path", "attr": { "d": "m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7" }, "child": [] }, { "tag": "path", "attr": { "d": "m7.5 4.27 9 5.15" }, "child": [] }], "Wallet": [{ "tag": "path", "attr": { "d": "M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" }, "child": [] }, { "tag": "path", "attr": { "d": "M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" }, "child": [] }], "CreditCard": [{ "tag": "rect", "attr": { "width": "20", "height": "14", "x": "2", "y": "5", "rx": "2" }, "child": [] }, { "tag": "line", "attr": { "x1": "2", "x2": "22", "y1": "10", "y2": "10" }, "child": [] }], "LogOut": [{ "tag": "path", "attr": { "d": "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" }, "child": [] }, { "tag": "polyline", "attr": { "points": "16 17 21 12 16 7" }, "child": [] }, { "tag": "line", "attr": { "x1": "21", "x2": "9", "y1": "12", "y2": "12" }, "child": [] }], "Menu": [{ "tag": "line", "attr": { "x1": "4", "x2": "20", "y1": "12", "y2": "12" }, "child": [] }, { "tag": "line", "attr": { "x1": "4", "x2": "20", "y1": "6", "y2": "6" }, "child": [] }, { "tag": "line", "attr": { "x1": "4", "x2": "20", "y1": "18", "y2": "18" }, "child": [] }], "ChevronUp": [{ "tag": "path", "attr": { "d": "m18 15-6-6-6 6" }, "child": [] }], "ChevronDown": [{ "tag": "path", "attr": { "d": "m6 9 6 6 6-6" }, "child": [] }], "Trash2": [{ "tag": "path", "attr": { "d": "M3 6h18" }, "child": [] }, { "tag": "path", "attr": { "d": "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" }, "child": [] }, { "tag": "path", "attr": { "d": "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" }, "child": [] }, { "tag": "line", "attr": { "x1": "10", "x2": "10", "y1": "11", "y2": "17" }, "child": [] }, { "tag": "line", "attr": { "x1": "14", "x2": "14", "y1": "11", "y2": "17" }, "child": [] }], "Landmark": [{ "tag": "line", "attr": { "x1": "3", "x2": "21", "y1": "22", "y2": "22" }, "child": [] }, { "tag": "line", "attr": { "x1": "6", "x2": "6", "y1": "18", "y2": "11" }, "child": [] }, { "tag": "line", "attr": { "x1": "10", "x2": "10", "y1": "18", "y2": "11" }, "child": [] }, { "tag": "line", "attr": { "x1": "14", "x2": "14", "y1": "18", "y2": "11" }, "child": [] }, { "tag": "line", "attr": { "x1": "18", "x2": "18", "y1": "18", "y2": "11" }, "child": [] }, { "tag": "polygon", "attr": { "points": "12 2 20 7 4 7" }, "child": [] }] };
+const { useState, useEffect, useRef, useMemo, useCallback } = React;
+function mk(name) {
+    return function Icon({ size = 24, color = "currentColor", strokeWidth = 2, fill = "none", className, style, x, y, width, height }) {
+        const build = (n, i) => React.createElement(n.tag, { key: i, ...n.attr }, (n.child || []).map(build));
+        const kids = (ICONS[name] || []).map(build);
+        return React.createElement("svg", { width: width || size, height: height || size, x, y, viewBox: "0 0 24 24", fill, stroke: color, strokeWidth, strokeLinecap: "round", strokeLinejoin: "round", className, style }, kids);
+    };
+}
+const ArrowLeft = mk("ArrowLeft");
+const HomeIcon = mk("Home");
+const ShoppingCart = mk("ShoppingCart");
+const Search = mk("Search");
+const Heart = mk("Heart");
+const BarChart3 = mk("BarChart3");
+const User = mk("User");
+const Bell = mk("Bell");
+const ChevronRight = mk("ChevronRight");
+const Plus = mk("Plus");
+const Minus = mk("Minus");
+const X = mk("X");
+const Star = mk("Star");
+const PiggyBank = mk("PiggyBank");
+const Sprout = mk("Sprout");
+const CheckCircle2 = mk("CheckCircle2");
+const Truck = mk("Truck");
+const Leaf = mk("Leaf");
+const TreePine = mk("TreePine");
+const Shield = mk("Shield");
+const Award = mk("Award");
+const Edit2 = mk("Edit2");
+const RotateCcw = mk("RotateCcw");
+const Target = mk("Target");
+const PenLine = mk("PenLine");
+const Sparkles = mk("Sparkles");
+const Shirt = mk("Shirt");
+const UtensilsCrossed = mk("UtensilsCrossed");
+const KeyRound = mk("KeyRound");
+const PawPrint = mk("PawPrint");
+const Smartphone = mk("Smartphone");
+const Apple = mk("Apple");
+const Gamepad2 = mk("Gamepad2");
+const HeartPulse = mk("HeartPulse");
+const Dumbbell = mk("Dumbbell");
+const Check = mk("Check");
+const Package = mk("Package");
+const HouseIcon = mk("Home");
+const Wallet = mk("Wallet");
+const CreditCard = mk("CreditCard");
+const LogOut = mk("LogOut");
+const Menu = mk("Menu");
+const ChevronUp = mk("ChevronUp");
+const ChevronDown = mk("ChevronDown");
+const Trash2 = mk("Trash2");
+const Landmark = mk("Landmark");
+/* ----------------------------- design tokens ----------------------------- */
+const C = {
+    primary: "#00C7A9",
+    primaryDark: "#00A98F",
+    primaryDeep: "#00806D",
+    successBg: "#DFF8F4",
+    bg: "#F7F8FA",
+    card: "#FFFFFF",
+    text: "#1B1D1F",
+    secondary: "#767C82",
+    border: "#EDEEF0",
+    danger: "#E0554F",
+};
+/* ------------------------------ static data ------------------------------ */
+const CATEGORIES = [
+    { id: "stationery", name: "문구", Icon: PenLine },
+    { id: "beauty", name: "뷰티", Icon: Sparkles },
+    { id: "fashion", name: "패션", Icon: Shirt },
+    { id: "living", name: "리빙", Icon: HomeIcon },
+    { id: "kitchen", name: "주방", Icon: UtensilsCrossed },
+    { id: "keyring", name: "키링·굿즈", Icon: KeyRound },
+    { id: "pet", name: "반려동물", Icon: PawPrint },
+    { id: "digital", name: "디지털", Icon: Smartphone },
+    { id: "food", name: "식품", Icon: Apple },
+    { id: "hobby", name: "취미", Icon: Gamepad2 },
+    { id: "health", name: "헬스/건강식품", Icon: HeartPulse },
+    { id: "sports", name: "스포츠/레저", Icon: Dumbbell },
+];
+// each product is unique — real-world-ish item name + realistic individual price
+const PRODUCT_DATA = {
+    stationery: [
+        ["모나미 3색 볼펜", 1500], ["오피스 형광펜 세트", 3800], ["스프링 노트 A5", 2800],
+        ["포스트잇 정리세트", 2200], ["캐릭터 스티커북", 3500], ["마스킹테이프 3colors", 4200],
+        ["수정테이프", 1800], ["샤프 0.5mm", 2500], ["만년필", 12000], ["다이어리 커버", 8900],
+        ["클립보드", 5500], ["컬러 볼펜 12색 세트", 6700], ["가죽 북마크 세트", 3200],
+        ["문구 가위", 4300], ["30cm 투명자", 1200], ["지우개 세트", 1900], ["인덱스 탭", 2600],
+    ],
+    beauty: [
+        ["시카 진정 립밤", 6500], ["저자극 핸드크림", 8200], ["수분 마스크팩 5매", 7900],
+        ["톤업 선크림", 15800], ["약산성 클렌징폼", 9500], ["진정 토너", 13500],
+        ["롱래스팅 아이라이너", 8900], ["벨벳 쿠션팩트", 22000], ["매트 립틴트", 9900],
+        ["헤어 에센스", 11500], ["바디로션", 12800], ["아이크림", 18500], ["컬러 립스틱", 14200],
+        ["페이셜 미스트", 10800], ["클렌징 오일", 13900], ["헤어 미스트", 8700],
+    ],
+    fashion: [
+        ["발목양말 5족 세트", 6900], ["코튼 에코백", 9800], ["캐시미어 혼방 머플러", 24000],
+        ["니트 비니", 12500], ["레더 벨트", 18900], ["크로스백 파우치", 15700],
+        ["니트 장갑", 8500], ["자수 손수건", 5200], ["스트라이프 양말", 4900],
+        ["캔버스 토트백", 21000], ["버킷햇", 16800], ["실크 스카프", 27000],
+        ["가죽 카드지갑", 19500], ["데일리 크로스백", 32000], ["니트 넥워머", 11200],
+    ],
+    living: [
+        ["우드 디퓨저 세트", 22000], ["극세사 쿠션커버", 12800], ["접이식 수납박스", 16500],
+        ["LED 무드등", 19800], ["소이 캔들", 14500], ["극세사 러그(소형)", 28900],
+        ["미니 탁상시계", 15200], ["우드 트레이", 13600], ["아로마 디퓨저 리필", 9800],
+        ["극세사 담요", 24500], ["접이식 스탠드 행거", 33000], ["무소음 벽시계", 26800],
+        ["침구 커버 세트", 36500], ["방향제 세트", 11700], ["미니 세라믹 화병", 12800],
+    ],
+    kitchen: [
+        ["스테인리스 텀블러 500ml", 13800], ["원목 도마", 15600], ["밀폐용기 3종 세트", 12200],
+        ["스텐 수저 세트", 8900], ["유리컵 2p 세트", 9700], ["도자기 접시 세트", 18500],
+        ["실리콘 냄비받침", 5600], ["계량컵 세트", 6800], ["핸드드립 커피세트", 22500],
+        ["스텐 텀블러 350ml", 11200], ["유리 밀폐용기", 14700], ["원목 뒤집개", 4300],
+        ["실리콘 주걱 세트", 3900], ["컵받침 세트", 6200], ["우드 접시", 16200],
+    ],
+    keyring: [
+        ["미니 곰인형 키링", 6900], ["캐릭터 스마트톡", 4500], ["아크릴 뱃지", 2800],
+        ["다이어리 스티커북", 3900], ["레진 아크릴 키링", 5200], ["볼펜형 키링", 3400],
+        ["캐릭터 목걸이", 7800], ["미니 파우치 키링", 6300], ["라미네이팅 스티커", 2200],
+        ["인형 가방고리", 8900], ["캐릭터 뱃지 세트", 4700], ["미니 손거울 키링", 5900],
+        ["미니 카라비너 키링", 4200], ["캐릭터 파우치", 9500], ["미니 인형 가방고리", 7200],
+    ],
+    pet: [
+        ["강아지 트릿 간식", 8900], ["캣닢 장난감", 5200], ["나일론 리드줄", 12800],
+        ["극세사 반려동물 방석", 18500], ["자동 급식기", 32000], ["펫 그루밍 브러시", 9800],
+        ["강아지 니트옷", 15600], ["하네스 세트", 21000], ["고양이 낚싯대 장난감", 6800],
+        ["강아지 츄르 10p", 4900], ["스텐 펫 물그릇", 8300], ["강아지 배변패드 100매", 13200],
+        ["고양이 스크래처", 15800], ["강아지 산책조끼", 19800], ["펫 이동가방", 28500],
+    ],
+    digital: [
+        ["보조배터리 10000mAh", 22000], ["C타입 충전케이블", 8900], ["무선 블루투스 이어폰", 34000],
+        ["무선 마우스", 15800], ["미니 블루투스 키보드", 28500], ["스마트폰 거치대", 9800],
+        ["미니 블루투스 스피커", 26000], ["멀티 충전기", 16500], ["웹캠 1080p", 32000],
+        ["노트북 파우치", 19800], ["스마트워치 밴드", 12200], ["무선 충전패드", 17600],
+        ["블루투스 리시버", 13500], ["노트북 거치대", 21500], ["4포트 USB 허브", 15200],
+    ],
+    food: [
+        ["견과류 믹스", 8900], ["수제 초콜릿 세트", 12500], ["원두커피 200g", 9800],
+        ["티백 선물세트", 11200], ["과일 젤리", 4900], ["수제 쿠키 세트", 13800],
+        ["그래놀라 시리얼", 8300], ["국산 벌꿀", 15600], ["견과류바 세트", 6700],
+        ["핸드드립 원두", 14200], ["말린 과일 세트", 9500], ["곡물차 세트", 10800],
+        ["떡 선물세트", 16800], ["과일잼 세트", 11200], ["말차라떼 세트", 12500],
+    ],
+    hobby: [
+        ["1000피스 직소퍼즐", 16800], ["컬러링북 세트", 7900], ["아크릴 물감 세트", 13500],
+        ["캔버스 보드", 9800], ["뜨개실 세트", 8600], ["보드게임", 22000],
+        ["필름 카메라", 34000], ["조립 블록 완구", 27500], ["수채화 물감 세트", 15200],
+        ["스케치북", 5800], ["디퓨저 DIY 키트", 18900], ["캘리그라피 펜 세트", 9200],
+        ["미니 화분 키우기 키트", 13800], ["레진공예 키트", 17500], ["석고 방향제 DIY", 9800],
+    ],
+    health: [
+        ["비타민C 90정", 9800], ["유산균 30포", 15600], ["단백질바 12개입", 18500],
+        ["마그네슘 60정", 11200], ["오메가3 60캡슐", 16800], ["홍삼스틱 30포", 22000],
+        ["루테인 60정", 13500], ["저항밴드 세트", 10200], ["프로틴 쉐이커", 6700],
+        ["종합비타민", 14200], ["콜라겐 분말", 19500], ["멀티미네랄", 12800],
+        ["BCAA 파우더", 21500], ["칼슘 마그네슘 아연", 13200], ["멀티비타민 구미", 15900],
+    ],
+    sports: [
+        ["요가매트", 24000], ["폼롤러", 18500], ["스테인리스 물병 750ml", 12800],
+        ["라텍스 스트레칭밴드", 8900], ["러닝벨트 파우치", 13500], ["트레이닝 장갑", 9800],
+        ["스포츠 타월", 6700], ["디지털 스톱워치", 5900], ["요가 블록", 11200],
+        ["짐볼", 22500], ["아령 세트(2kg×2)", 27000], ["접이식 폼매트", 16800],
+        ["무릎 보호대", 9800], ["런닝 조끼", 24500], ["스포츠 목베개", 7600],
+    ],
+};
+function seededRand(seed) {
+    const x = Math.sin(seed * 999.7) * 10000;
+    return x - Math.floor(x);
+}
+const PRODUCTS_BY_CAT = Object.fromEntries(CATEGORIES.map((cat) => [
+    cat.id,
+    PRODUCT_DATA[cat.id].map(([name, price], i) => ({
+        id: `${cat.id}-${i}`,
+        name,
+        price,
+        rating: Math.round((3.6 + seededRand((i + 1) * 7 + cat.id.length) * 1.3) * 10) / 10,
+        categoryId: cat.id,
+        categoryName: cat.name,
+        Icon: cat.Icon,
+    })),
+]));
+const ALL_PRODUCTS = CATEGORIES.flatMap((c) => PRODUCTS_BY_CAT[c.id]);
+const CHEER_QUOTES = [
+    "오늘 소비를 참으면 내일의 내가 고마워할 거예요.",
+    "지금 참은 소비가 미래의 여행이 됩니다.",
+    "오늘의 절약이 미래의 자유를 만듭니다.",
+    "조금만 참으면 더 큰 행복을 살 수 있어요.",
+];
+const CELEBRATE_QUOTES = [
+    "오늘도 미래를 위한 좋은 선택을 했어요.",
+    "하루 한 번의 절약이 목돈을 만듭니다.",
+    "작은 선택이 큰 변화를 만들고 있어요.",
+    "오늘도 환경과 지갑을 함께 지켰어요.",
+];
+const DELIVERY_REQUEST_OPTIONS = [
+    "부재 시 경비실에 맡겨주세요.",
+    "집 앞에 놔주세요.",
+    "택배함에 놔주세요.",
+    "집 앞으로 직접 배송해주세요.",
+    "배송 전 꼭 연락주세요.",
+    "직접 입력",
+];
+const POPULAR_SEARCHES = ["텀블러", "다이어리", "강아지 트릿 간식", "무선 블루투스 이어폰", "요가매트", "비타민C 90정", "슬리퍼", "노트"];
+const NOTIFICATIONS = [
+    { id: 1, text: "오늘도 미래를 담아볼까요?" },
+    { id: 2, text: "첫 절약에 도전해보세요." },
+    { id: 3, text: "목표를 설정하면 달성률을 확인할 수 있어요." },
+];
+const GOAL_PRESETS = [
+    { name: "노트북 구매", amount: 1500000 },
+    { name: "일본 여행", amount: 2000000 },
+    { name: "유럽 여행", amount: 3500000 },
+    { name: "비상금 마련", amount: 3000000 },
+    { name: "내 집 마련 자금", amount: 5000000 },
+    { name: "자동차 구매", amount: 4000000 },
+    { name: "직접입력", amount: 0 },
+];
+const DEFAULTS = {
+    userName: "사용자",
+    goalName: "",
+    goalAmount: 0,
+    goalCurrent: 0,
+    savingsHistory: [],
+};
+const won = (n) => Math.round(n).toLocaleString("ko-KR") + "원";
+const fmtTime = (d) => {
+    const h = d.getHours();
+    const m = String(d.getMinutes()).padStart(2, "0");
+    return `${h < 12 ? "오전" : "오후"} ${h % 12 === 0 ? 12 : h % 12}:${m}`;
+};
+const sameMonth = (ts) => { const a = new Date(ts), b = new Date(); return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth(); };
+const monthTotalOf = (hist) => hist.filter((h) => h.ts && sameMonth(h.ts)).reduce((s, h) => s + h.amount, 0);
+const topCategoryOf = (hist) => {
+    const cnt = {};
+    hist.forEach((h) => (h.cats || []).forEach((c) => { cnt[c] = (cnt[c] || 0) + 1; }));
+    const e = Object.entries(cnt).sort((a, b) => b[1] - a[1]);
+    return e.length ? e[0][0] : null;
+};
+const todayStr = () => {
+    const d = new Date();
+    return `${d.getMonth() + 1}월 ${d.getDate()}일`;
+};
+/* ------------------------------ small pieces ------------------------------ */
+function IconBadge({ Icon, size = 44, bg = "#F0FBF9", color = C.primary, ring = false }) {
+    return (React.createElement("div", { className: "flex items-center justify-center rounded-full shrink-0", style: { width: size, height: size, background: bg, border: ring ? `1px solid ${C.border}` : "none" } },
+        React.createElement(Icon, { size: Math.round(size * 0.48), color: color, strokeWidth: 1.8 })));
+}
+function TopHeader({ title, onBack, onHome, onCart, cartCount, right }) {
+    return (React.createElement("div", { className: "shrink-0 flex items-center justify-between px-3 h-14 border-b", style: { background: C.card, borderColor: C.border } },
+        React.createElement("div", { className: "flex items-center gap-1 w-16" }, onBack && (React.createElement("button", { onClick: onBack, className: "p-2 -ml-1 active:opacity-60" },
+            React.createElement(ArrowLeft, { size: 20, color: C.text })))),
+        React.createElement("div", { className: "flex-1 text-center text-[15px] font-bold truncate", style: { color: C.text } }, title),
+        React.createElement("div", { className: "flex items-center gap-1 w-16 justify-end" },
+            right,
+            onHome && (React.createElement("button", { onClick: onHome, className: "p-2 active:opacity-60" },
+                React.createElement(HomeIcon, { size: 19, color: C.text }))),
+            onCart && (React.createElement("button", { onClick: onCart, className: "p-2 -mr-1 relative active:opacity-60" },
+                React.createElement(ShoppingCart, { size: 19, color: C.text }),
+                cartCount > 0 && (React.createElement("span", { className: "absolute -top-0.5 -right-0.5 text-[9px] text-white rounded-full flex items-center justify-center font-bold", style: { background: C.primary, width: 15, height: 15 } }, cartCount)))))));
+}
+function BottomNav({ screen, go, cartCount }) {
+    const items = [
+        { key: "home", label: "홈", Icon: HomeIcon },
+        { key: "wishlist", label: "관심상품", Icon: Heart },
+        { key: "cart", label: "장바구니", Icon: ShoppingCart },
+        { key: "report", label: "리포트", Icon: BarChart3 },
+        { key: "my", label: "MY", Icon: User },
+    ];
+    return (React.createElement("div", { className: "shrink-0 flex items-stretch border-t", style: { background: C.card, borderColor: C.border, height: 60 } }, items.map(({ key, label, Icon }) => {
+        const active = screen === key;
+        return (React.createElement("button", { key: key, onClick: () => go(key), className: "flex-1 flex flex-col items-center justify-center gap-0.5 relative active:opacity-60" },
+            key === "cart" && cartCount > 0 && (React.createElement("span", { className: "absolute top-1.5 right-[26%] text-[9px] text-white rounded-full flex items-center justify-center font-bold", style: { background: C.primary, width: 14, height: 14 } }, cartCount)),
+            React.createElement(Icon, { size: 20, color: active ? C.primary : C.secondary, strokeWidth: active ? 2.2 : 1.8 }),
+            React.createElement("span", { className: "text-[10px]", style: { color: active ? C.primary : C.secondary, fontWeight: active ? 700 : 500 } }, label)));
+    })));
+}
+function Toast({ message }) {
+    if (!message)
+        return null;
+    return (React.createElement("div", { className: "absolute top-3 left-0 right-0 flex justify-center z-50 pointer-events-none" },
+        React.createElement("div", { className: "px-4 py-2.5 rounded-full text-white text-[13px] font-semibold shadow-lg", style: { background: "#222222dd" } }, message)));
+}
+// In-app confirm dialog. Sandboxed artifact iframes often block window.confirm,
+// so a real modal is used instead — otherwise "reset" silently does nothing.
+function ConfirmModal({ open, title, description, confirmLabel, onConfirm, onCancel }) {
+    if (!open)
+        return null;
+    return (React.createElement("div", { className: "absolute inset-0 z-[60] flex items-end sm:items-center justify-center" },
+        React.createElement("div", { className: "absolute inset-0", style: { background: "rgba(0,0,0,0.45)" }, onClick: onCancel }),
+        React.createElement("div", { className: "relative w-full sm:w-[86%] rounded-t-3xl sm:rounded-3xl p-5", style: { background: C.card } },
+            React.createElement("div", { className: "text-[15px] font-bold mb-1.5", style: { color: C.text } }, title),
+            React.createElement("div", { className: "text-[12.5px] leading-relaxed mb-5", style: { color: C.secondary, wordBreak: "keep-all" } }, description),
+            React.createElement("div", { className: "flex gap-2" },
+                React.createElement("button", { onClick: onCancel, className: "flex-1 h-11 rounded-xl font-semibold text-[13.5px]", style: { border: `1.5px solid ${C.border}`, color: C.text } }, "\uCDE8\uC18C"),
+                React.createElement("button", { onClick: onConfirm, className: "flex-1 h-11 rounded-xl text-white font-bold text-[13.5px]", style: { background: C.danger } }, confirmLabel)))));
+}
+// common screen shell: fixed header + fixed bottom nav, scrollable middle
+function Screen({ title, header, onBack, onHome, onCart, cartCount, navKey, go, children, right }) {
+    return (React.createElement("div", { className: "flex flex-col h-full" },
+        header || React.createElement(TopHeader, { title: title, onBack: onBack, onHome: onHome, onCart: onCart, cartCount: cartCount, right: right }),
+        React.createElement("div", { className: "flex-1 overflow-y-auto", style: { background: C.bg } }, children),
+        React.createElement(BottomNav, { screen: navKey, go: go, cartCount: cartCount })));
+}
+/* --------------------------- top-level screens --------------------------- */
+// IMPORTANT: every screen is a top-level component (not defined inside App's
+// render). Defining components inside a parent's render body gives them a new
+// identity every re-render, which makes React unmount + remount the DOM node
+// on every keystroke — that's what was breaking Korean IME input and closing
+// the keyboard after one character. Top-level components keep a stable
+// identity, so inputs keep focus and composition state correctly.
+function SplashScreen() {
+    return (React.createElement("div", { className: "flex flex-col items-center justify-center h-full", style: { background: C.primary } },
+        React.createElement("div", { className: "flex flex-col items-center gap-4" },
+            React.createElement("div", { className: "relative flex items-center justify-center" },
+                React.createElement("div", { className: "w-24 h-24 rounded-full bg-white/15 flex items-center justify-center" },
+                    React.createElement(PiggyBank, { size: 48, color: "#fff", strokeWidth: 1.6 })),
+                React.createElement("div", { className: "absolute -bottom-1 -right-2 w-9 h-9 rounded-full bg-white flex items-center justify-center" },
+                    React.createElement(Sprout, { size: 18, color: C.primary }))),
+            React.createElement("div", { className: "text-white text-xl font-extrabold tracking-tight" }, "\uB2F4\uC544\uBD10\uC694"),
+            React.createElement("div", { className: "text-white/85 text-[13px] text-center px-10 leading-relaxed" }, "\uC624\uB298\uB3C4 \uC791\uC740 \uC18C\uBE44 \uB300\uC2E0 \uBBF8\uB798\uB97C \uB2F4\uC544\uBD10\uC694."),
+            React.createElement("div", { className: "mt-4 w-6 h-6 border-2 border-white/40 border-t-white rounded-full animate-spin" }))));
+}
+function HomeScreen({ go, goRoot, cartCount, topCat, totalSavings, todaySavings, goalName, goalAmount, goalCurrent }) {
+    const quote = CHEER_QUOTES[new Date().getDate() % CHEER_QUOTES.length];
+    const header = (React.createElement("div", { className: "shrink-0 flex items-center gap-2 px-3 h-14 border-b", style: { background: C.card, borderColor: C.border } },
+        React.createElement("div", { className: "text-[17px] font-extrabold", style: { color: C.primary } }, "\uB2F4\uC544\uBD10\uC694"),
+        React.createElement("button", { onClick: () => go("search"), className: "flex-1 h-9 rounded-full flex items-center px-3 gap-2 text-left", style: { border: `1px solid ${C.border}`, color: C.secondary } },
+            React.createElement(Search, { size: 15, color: C.secondary }),
+            React.createElement("span", { className: "text-[13px]" }, "\uC0C1\uD488\uC744 \uAC80\uC0C9\uD574\uBCF4\uC138\uC694")),
+        React.createElement("button", { onClick: () => go("notifications"), className: "p-2 active:opacity-60" },
+            React.createElement(Bell, { size: 19, color: C.text })),
+        React.createElement("button", { onClick: () => go("cart"), className: "p-2 -mr-1 relative active:opacity-60" },
+            React.createElement(ShoppingCart, { size: 19, color: C.text }),
+            cartCount > 0 && (React.createElement("span", { className: "absolute -top-0.5 -right-0.5 text-[9px] text-white rounded-full flex items-center justify-center font-bold", style: { background: C.primary, width: 15, height: 15 } }, cartCount)))));
+    return (React.createElement(Screen, { header: header, navKey: "home", go: goRoot, cartCount: cartCount },
+        React.createElement("div", { className: "pb-4" },
+            React.createElement("div", { className: "mx-3 mt-3 rounded-2xl p-4 flex items-center justify-between", style: { background: C.primary } },
+                React.createElement("div", null,
+                    React.createElement("div", { className: "text-white text-[13px] font-semibold mb-1" }, "\uB2F4\uACE0 \uC2F6\uC740 \uB9CC\uD07C, \uBBF8\uB798\uB3C4 \uD568\uAED8 \uB2F4\uC544\uBD10\uC694."),
+                    React.createElement("div", { className: "text-white/80 text-[11px] mb-0.5" }, "\uC774\uBC88 \uB2EC \uC808\uC57D"),
+                    React.createElement("div", { className: "text-white text-2xl font-extrabold" }, won(totalSavings))),
+                React.createElement(PiggyBank, { size: 54, color: "#fff", strokeWidth: 1.3 })),
+            React.createElement("button", { onClick: () => go("accountManage"), className: "mx-3 mt-3 rounded-2xl p-3.5 flex items-center gap-3 text-left active:opacity-70", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)", width: "calc(100% - 24px)" } },
+                React.createElement(Landmark, { size: 22, color: C.primary, className: "shrink-0" }),
+                React.createElement("div", { className: "flex-1" },
+                    React.createElement("div", { className: "text-[13px] font-bold", style: { color: C.text } }, "\uACC4\uC88C \uAD00\uB9AC"),
+                    React.createElement("div", { className: "text-[11px]", style: { color: C.secondary } }, "\uCD9C\uAE08 \uACC4\uC88C\uC640 \uC790\uC720\uC801\uAE08 \uACC4\uC88C\uB97C \uAD00\uB9AC\uD574\uC694.")),
+                React.createElement(ChevronRight, { size: 17, color: C.secondary, className: "shrink-0" })),
+            React.createElement("button", { onClick: () => go("carbonReport"), className: "mt-3 w-full py-4 px-4 flex items-center gap-3 text-left", style: { background: C.successBg } },
+                React.createElement(Leaf, { size: 26, color: C.primary, className: "shrink-0" }),
+                React.createElement("div", { className: "flex-1" },
+                    React.createElement("div", { className: "text-[12.5px] font-bold", style: { color: C.text } }, "\uC9C0\uAE08\uAE4C\uC9C0\uC758 \uD0C4\uC18C \uC808\uAC10 \uB9AC\uD3EC\uD2B8"),
+                    React.createElement("div", { className: "text-[11.5px]", style: { color: C.secondary } }, "\uB0B4\uAC00 \uC9C0\uD0A8 \uC9C0\uAD6C\uB97C \uD655\uC778\uD574\uBCF4\uC138\uC694.")),
+                React.createElement(ChevronRight, { size: 17, color: C.primaryDark, className: "shrink-0" })),
+            React.createElement("div", { className: "flex gap-2.5 mx-3 mt-3" },
+                React.createElement("div", { className: "flex-1 rounded-2xl p-3.5", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                    React.createElement("div", { className: "text-[11px] mb-1", style: { color: C.secondary } }, "\uC624\uB298 \uC808\uC57D"),
+                    React.createElement("div", { className: "text-lg font-extrabold", style: { color: C.text } }, won(todaySavings)),
+                    React.createElement("div", { className: "text-[10.5px] mt-1 font-semibold", style: { color: C.primary } }, todaySavings > 0 ? "오늘 저축 성공" : "오늘 첫 저축을 해보세요")),
+                React.createElement("div", { className: "flex-1 rounded-2xl p-3.5", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                    React.createElement("div", { className: "flex items-center justify-between mb-1" },
+                        React.createElement("span", { className: "text-[11px]", style: { color: C.secondary } },
+                            "\uBAA9\uD45C \u00B7 ",
+                            goalName || "미설정"),
+                        React.createElement("button", { onClick: () => go("goalEdit"), className: "text-[10px] font-bold", style: { color: C.primary } }, goalAmount ? "변경" : "설정")),
+                    React.createElement("div", { className: "flex items-center justify-between mb-1.5" },
+                        React.createElement("span", { className: "text-[12px] font-bold", style: { color: C.text } }, goalAmount ? `${won(goalCurrent)} / ${won(goalAmount)}` : "목표를 설정해보세요"),
+                        React.createElement("span", { className: "text-[11px] font-extrabold", style: { color: C.primary } },
+                            goalAmount ? Math.min(100, Math.round((goalAmount ? goalCurrent / goalAmount : 0) * 100)) : 0,
+                            "%")),
+                    React.createElement("div", { className: "h-1.5 rounded-full w-full", style: { background: C.border } },
+                        React.createElement("div", { className: "h-1.5 rounded-full", style: { background: C.primary, width: `${Math.min(100, (goalAmount ? goalCurrent / goalAmount : 0) * 100)}%` } })))),
+            React.createElement("div", { className: "mx-3 mt-4" },
+                React.createElement("div", { className: "text-[14px] font-bold mb-2.5", style: { color: C.text } }, "\uCE74\uD14C\uACE0\uB9AC"),
+                React.createElement("div", { className: "grid grid-cols-4 gap-y-3.5" }, CATEGORIES.map((cat) => (React.createElement("button", { key: cat.id, onClick: () => go({ screen: "category", categoryId: cat.id }), className: "flex flex-col items-center gap-1.5 active:opacity-60" },
+                    React.createElement(IconBadge, { Icon: cat.Icon, ring: true }),
+                    React.createElement("span", { className: "text-[11px]", style: { color: C.text } }, cat.name)))))),
+            React.createElement("div", { className: "mx-3 mt-4 rounded-2xl p-3.5", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "text-[12.5px] font-bold mb-1.5", style: { color: C.text } }, "\u2726 AI \uC18C\uBE44 \uBD84\uC11D"),
+                React.createElement("div", { className: "text-[12px] leading-relaxed", style: { color: C.secondary } }, topCat ? (React.createElement(React.Fragment, null,
+                    "\uAC00\uC7A5 \uB9CE\uC774 \uB2F4\uB294 \uCE74\uD14C\uACE0\uB9AC\uB294 ",
+                    React.createElement("b", { style: { color: C.primary } }, topCat),
+                    "\uC785\uB2C8\uB2E4.",
+                    React.createElement("br", null),
+                    "\uC774\uBC88 \uB2EC \uC808\uC57D \uAE08\uC561\uC740 ",
+                    React.createElement("b", { style: { color: C.primary } }, won(totalSavings)),
+                    "\uC785\uB2C8\uB2E4.")) : "아직 분석할 소비 데이터가 없어요. 첫 상품을 담아보세요.")),
+            React.createElement("div", { className: "mx-3 mt-3 rounded-2xl py-2.5 px-3.5 text-center", style: { background: C.successBg } },
+                React.createElement("span", { className: "text-[12px] font-semibold", style: { color: C.primaryDark } }, quote)))));
+}
+function CategoryScreen({ categoryId, goBack, goRoot, openProduct, cartCount, nav }) {
+    const cat = CATEGORIES.find((c) => c.id === categoryId) || CATEGORIES[0];
+    const products = PRODUCTS_BY_CAT[cat.id];
+    return (React.createElement(Screen, { title: cat.name, onBack: nav.length > 1 ? goBack : null, onHome: () => goRoot("home"), onCart: () => goRoot("cart"), cartCount: cartCount, navKey: "home", go: goRoot },
+        React.createElement("div", { className: "p-3 space-y-2" }, products.map((p) => (React.createElement("button", { key: p.id, onClick: () => openProduct(p.id), className: "w-full flex items-center gap-3 rounded-xl p-2.5 text-left active:opacity-70", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+            React.createElement(IconBadge, { Icon: p.Icon, size: 54 }),
+            React.createElement("div", { className: "flex-1 min-w-0" },
+                React.createElement("div", { className: "text-[13.5px] font-semibold truncate", style: { color: C.text } }, p.name),
+                React.createElement("div", { className: "flex items-center gap-1 mt-0.5" },
+                    React.createElement(Star, { size: 11, color: "#FFB800", fill: "#FFB800" }),
+                    React.createElement("span", { className: "text-[11px]", style: { color: C.secondary } }, p.rating)),
+                React.createElement("div", { className: "text-[14px] font-extrabold mt-0.5", style: { color: C.text } }, won(p.price))),
+            React.createElement(ChevronRight, { size: 16, color: C.secondary })))))));
+}
+function ProductDetailScreen({ productId, wishlist, toggleWishlist, addToCart, goBack, goRoot, cartCount, nav }) {
+    const p = ALL_PRODUCTS.find((x) => x.id === productId);
+    const [qty, setQty] = useState(1);
+    if (!p)
+        return null;
+    const liked = wishlist.includes(p.id);
+    return (React.createElement(Screen, { title: "\uC0C1\uD488 \uC0C1\uC138", onBack: nav.length > 1 ? goBack : null, onHome: () => goRoot("home"), onCart: () => goRoot("cart"), cartCount: cartCount, navKey: "home", go: goRoot },
+        React.createElement("div", { className: "flex flex-col min-h-full" },
+            React.createElement("div", { className: "flex items-center justify-center py-10", style: { background: C.card } },
+                React.createElement(IconBadge, { Icon: p.Icon, size: 140, bg: "#F0FBF9" })),
+            React.createElement("div", { className: "p-4 space-y-3", style: { background: C.card } },
+                React.createElement("div", { className: "text-[12px]", style: { color: C.secondary } }, p.categoryName),
+                React.createElement("div", { className: "text-[17px] font-bold", style: { color: C.text } }, p.name),
+                React.createElement("div", { className: "flex items-center gap-1" },
+                    React.createElement(Star, { size: 13, color: "#FFB800", fill: "#FFB800" }),
+                    React.createElement("span", { className: "text-[12.5px]", style: { color: C.secondary } },
+                        p.rating,
+                        " \u00B7 \uB9AC\uBDF0 \uB2E4\uC218")),
+                React.createElement("div", { className: "text-2xl font-extrabold", style: { color: C.text } }, won(p.price)),
+                React.createElement("div", { className: "h-px", style: { background: C.border } }),
+                React.createElement("div", { className: "flex items-center justify-between" },
+                    React.createElement("span", { className: "text-[13px] font-semibold", style: { color: C.text } }, "\uC218\uB7C9"),
+                    React.createElement("div", { className: "flex items-center gap-3 rounded-full px-2 py-1", style: { border: `1px solid ${C.border}` } },
+                        React.createElement("button", { onClick: () => setQty((q) => Math.max(1, q - 1)), className: "active:opacity-50" },
+                            React.createElement(Minus, { size: 15 })),
+                        React.createElement("span", { className: "text-[14px] font-bold w-4 text-center" }, qty),
+                        React.createElement("button", { onClick: () => setQty((q) => q + 1), className: "active:opacity-50" },
+                            React.createElement(Plus, { size: 15 }))))),
+            React.createElement("div", { className: "flex-1", style: { background: C.bg } }),
+            React.createElement("div", { className: "shrink-0 flex items-center gap-2 p-3 border-t sticky bottom-0", style: { background: C.card, borderColor: C.border } },
+                React.createElement("button", { onClick: () => toggleWishlist(p.id), className: "w-12 h-12 rounded-xl flex items-center justify-center shrink-0", style: { border: `1px solid ${C.border}` } },
+                    React.createElement(Heart, { size: 20, color: liked ? "#FF5C7A" : C.secondary, fill: liked ? "#FF5C7A" : "none" })),
+                React.createElement("button", { onClick: () => addToCart(p.id, qty), className: "flex-1 h-12 rounded-xl text-white font-bold text-[14px]", style: { background: C.primary } },
+                    "\uC7A5\uBC14\uAD6C\uB2C8 \uB2F4\uAE30 \u00B7 ",
+                    won(p.price * qty))))));
+}
+function WishlistScreen({ wishlist, openProduct, goRoot, cartCount }) {
+    const items = wishlist.map((id) => ALL_PRODUCTS.find((p) => p.id === id)).filter(Boolean);
+    return (React.createElement(Screen, { title: "\uAD00\uC2EC\uC0C1\uD488", onHome: () => goRoot("home"), onCart: () => goRoot("cart"), cartCount: cartCount, navKey: "wishlist", go: goRoot },
+        React.createElement("div", { className: "p-3 space-y-2" },
+            items.length === 0 && (React.createElement("div", { className: "text-center py-20 text-[13px]", style: { color: C.secondary } },
+                "\u2661 \uB098\uC911\uC5D0 \uB2F4\uC544\uBCF4\uAE30",
+                React.createElement("br", null),
+                "\uC544\uC9C1 \uAD00\uC2EC\uC0C1\uD488\uC774 \uC5C6\uC5B4\uC694.")),
+            items.map((p) => (React.createElement("button", { key: p.id, onClick: () => openProduct(p.id), className: "w-full flex items-center gap-3 rounded-xl p-2.5 text-left active:opacity-70", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement(IconBadge, { Icon: p.Icon, size: 54 }),
+                React.createElement("div", { className: "flex-1 min-w-0" },
+                    React.createElement("div", { className: "text-[13.5px] font-semibold truncate", style: { color: C.text } }, p.name),
+                    React.createElement("div", { className: "text-[14px] font-extrabold mt-0.5", style: { color: C.text } }, won(p.price))),
+                React.createElement(Heart, { size: 17, color: "#FF5C7A", fill: "#FF5C7A" })))))));
+}
+function CartScreen({ cartItems, cartTotal, changeQty, removeFromCart, goRoot, go, cartCount }) {
+    return (React.createElement(Screen, { title: "\uC7A5\uBC14\uAD6C\uB2C8", onHome: () => goRoot("home"), cartCount: cartCount, navKey: "cart", go: goRoot },
+        React.createElement("div", { className: "flex flex-col min-h-full" },
+            React.createElement("div", { className: "flex-1 p-3 space-y-2" },
+                cartItems.length === 0 && React.createElement("div", { className: "text-center py-20 text-[13px]", style: { color: C.secondary } }, "\uC7A5\uBC14\uAD6C\uB2C8\uAC00 \uBE44\uC5B4\uC788\uC5B4\uC694."),
+                cartItems.map((c) => (React.createElement("div", { key: c.productId, className: "flex items-center gap-3 rounded-xl p-2.5", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                    React.createElement(IconBadge, { Icon: c.product.Icon, size: 50 }),
+                    React.createElement("div", { className: "flex-1 min-w-0" },
+                        React.createElement("div", { className: "text-[13px] font-semibold truncate", style: { color: C.text } }, c.product.name),
+                        React.createElement("div", { className: "text-[13.5px] font-extrabold mt-0.5", style: { color: C.text } }, won(c.product.price * c.qty)),
+                        React.createElement("div", { className: "flex items-center gap-2 mt-1.5 rounded-full px-1.5 py-0.5 w-fit", style: { border: `1px solid ${C.border}` } },
+                            React.createElement("button", { onClick: () => changeQty(c.productId, -1), className: "active:opacity-50" },
+                                React.createElement(Minus, { size: 12 })),
+                            React.createElement("span", { className: "text-[12px] font-bold w-3 text-center" }, c.qty),
+                            React.createElement("button", { onClick: () => changeQty(c.productId, 1), className: "active:opacity-50" },
+                                React.createElement(Plus, { size: 12 })))),
+                    React.createElement("button", { onClick: () => removeFromCart(c.productId), className: "p-1.5 active:opacity-50" },
+                        React.createElement(X, { size: 16, color: C.secondary }))))),
+                cartItems.length > 0 && (React.createElement("div", { className: "rounded-xl p-3 mt-2", style: { background: C.successBg } },
+                    React.createElement("div", { className: "text-[12px]", style: { color: C.secondary } }, "\u2726 AI \uBD84\uC11D"),
+                    React.createElement("div", { className: "text-[12px] mt-1", style: { color: C.primaryDark } }, "\uC9C0\uAE08 \uB2F4\uC740 \uC0C1\uD488 \uAE08\uC561\uC774 \uADF8\uB300\uB85C \uC790\uC720\uC801\uAE08\uC5D0 \uC785\uAE08\uB3FC\uC694.")))),
+            cartItems.length > 0 && (React.createElement("div", { className: "shrink-0 p-3 border-t sticky bottom-0", style: { background: C.card, borderColor: C.border } },
+                React.createElement("div", { className: "flex items-center justify-between mb-1" },
+                    React.createElement("span", { className: "text-[12.5px]", style: { color: C.secondary } }, "\uCD1D \uAE08\uC561"),
+                    React.createElement("span", { className: "text-[13px] font-semibold", style: { color: C.text } }, won(cartTotal))),
+                React.createElement("div", { className: "flex items-center justify-between mb-3" },
+                    React.createElement("span", { className: "text-[12.5px]", style: { color: C.secondary } }, "\uC624\uB298 \uC800\uCD95 \uC608\uC815 \uAE08\uC561"),
+                    React.createElement("span", { className: "text-[15px] font-extrabold", style: { color: C.primary } }, won(cartTotal))),
+                React.createElement("button", { onClick: () => go("addressInput"), className: "w-full h-12 rounded-xl text-white font-bold text-[14px]", style: { background: C.primary } }, "\uACB0\uC81C\uD558\uAE30"))))));
+}
+function AddressInputScreen({ address, setAddress, payMethod, setPayMethod, go, goBack, cartCount, goRoot }) {
+    const showCustom = address.request === "직접 입력";
+    return (React.createElement(Screen, { title: "\uBC30\uC1A1\uC9C0 \uC785\uB825", onBack: goBack, cartCount: cartCount, navKey: "cart", go: goRoot },
+        React.createElement("div", { className: "p-4 space-y-4" },
+            React.createElement("div", null,
+                React.createElement("div", { className: "text-[12.5px] font-semibold mb-1.5", style: { color: C.text } }, "\uBC1B\uB294 \uBD84"),
+                React.createElement("input", { value: address.name, onChange: (e) => setAddress((a) => ({ ...a, name: e.target.value })), placeholder: "\uAE40\uC800\uCD95", type: "text", className: "w-full h-11 rounded-lg px-3 text-[13.5px] outline-none", style: { border: `1.5px solid ${C.border}`, color: C.text } })),
+            React.createElement("div", null,
+                React.createElement("div", { className: "text-[12.5px] font-semibold mb-1.5", style: { color: C.text } }, "\uC5F0\uB77D\uCC98"),
+                React.createElement("input", { value: address.phone, onChange: (e) => setAddress((a) => ({ ...a, phone: e.target.value.replace(/[^0-9-]/g, "") })), placeholder: "010-1234-5678", type: "tel", inputMode: "numeric", pattern: "[0-9-]*", className: "w-full h-11 rounded-lg px-3 text-[13.5px] outline-none", style: { border: `1.5px solid ${C.border}`, color: C.text } })),
+            React.createElement("div", null,
+                React.createElement("div", { className: "text-[12.5px] font-semibold mb-1.5", style: { color: C.text } }, "\uBC30\uB2EC\uC8FC\uC18C"),
+                React.createElement("input", { value: address.addr, onChange: (e) => setAddress((a) => ({ ...a, addr: e.target.value })), placeholder: "\uB3C4\uB85C\uBA85 \uC8FC\uC18C\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "text", className: "w-full h-11 rounded-lg px-3 text-[13.5px] outline-none", style: { border: `1.5px solid ${C.border}`, color: C.text } })),
+            React.createElement("div", null,
+                React.createElement("div", { className: "text-[12.5px] font-semibold mb-1.5", style: { color: C.text } }, "\uBC30\uB2EC \uC694\uCCAD\uC0AC\uD56D"),
+                React.createElement("select", { value: address.request, onChange: (e) => setAddress((a) => ({ ...a, request: e.target.value })), className: "w-full h-11 rounded-lg px-3 text-[13.5px] outline-none bg-white", style: { border: `1.5px solid ${C.border}`, color: address.request ? C.text : C.secondary } },
+                    React.createElement("option", { value: "" }, "\uBC30\uC1A1 \uC2DC \uC694\uCCAD\uC0AC\uD56D\uC744 \uC120\uD0DD\uD574\uC8FC\uC138\uC694."),
+                    DELIVERY_REQUEST_OPTIONS.map((opt) => (React.createElement("option", { key: opt, value: opt }, opt)))),
+                showCustom && (React.createElement("input", { value: address.requestCustom, onChange: (e) => setAddress((a) => ({ ...a, requestCustom: e.target.value })), placeholder: "\uC694\uCCAD\uC0AC\uD56D\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "text", className: "w-full h-11 rounded-lg px-3 text-[13.5px] outline-none mt-2", style: { border: `1.5px solid ${C.border}`, color: C.text } }))),
+            React.createElement("div", null,
+                React.createElement("div", { className: "text-[12.5px] font-semibold mb-1.5", style: { color: C.text } }, "\uACB0\uC81C\uC218\uB2E8"),
+                React.createElement("div", { className: "grid grid-cols-2 gap-2" }, [{ key: "account", label: "계좌결제" }, { key: "card", label: "카드결제" }, { key: "phone", label: "휴대폰결제" }, { key: "cash", label: "무통장입금" }].map((m) => (React.createElement("button", { key: m.key, onClick: () => setPayMethod(m.key), className: "h-11 rounded-lg text-[13px] transition-all", style: {
+                        border: `1.5px solid ${payMethod === m.key ? C.primary : C.border}`,
+                        color: payMethod === m.key ? C.primaryDark : C.text,
+                        background: payMethod === m.key ? C.successBg : C.card,
+                        fontWeight: payMethod === m.key ? 700 : 500,
+                        boxShadow: payMethod === m.key ? "0 0 0 3px rgba(0,199,169,0.14)" : "none",
+                    } }, m.label))))),
+            React.createElement("button", { onClick: () => go("orderConfirm"), className: "w-full h-12 rounded-xl text-white font-bold text-[14px] mt-2", style: { background: C.primary } }, "\uACB0\uC81C \uACC4\uC18D\uD558\uAE30"))));
+}
+function OrderConfirmScreen({ cartItems, cartTotal, address, payMethod, confirmPayment, goBack, cartCount, goRoot }) {
+    const payLabelMap = { account: "계좌결제", card: "카드결제", phone: "휴대폰결제", cash: "무통장입금" };
+    const hasAddress = address.name && address.phone && address.addr;
+    const requestLabel = address.request === "직접 입력" ? address.requestCustom || "직접 입력" : address.request;
+    return (React.createElement(Screen, { title: "\uACB0\uC81C \uD655\uC778", onBack: goBack, cartCount: cartCount, navKey: "cart", go: goRoot },
+        React.createElement("div", { className: "p-4 space-y-3" },
+            React.createElement("div", { className: "rounded-xl p-3", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "text-[12.5px] font-bold mb-2", style: { color: C.text } }, "\uC0C1\uD488 \uBAA9\uB85D"),
+                cartItems.map((c) => (React.createElement("div", { key: c.productId, className: "flex items-center justify-between py-1.5" },
+                    React.createElement("span", { className: "text-[12.5px]", style: { color: C.secondary } },
+                        c.product.name,
+                        " \u00D7 ",
+                        c.qty),
+                    React.createElement("span", { className: "text-[12.5px] font-semibold", style: { color: C.text } }, won(c.product.price * c.qty))))),
+                React.createElement("div", { className: "h-px my-2", style: { background: C.border } }),
+                React.createElement("div", { className: "flex items-center justify-between" },
+                    React.createElement("span", { className: "text-[13.5px] font-bold", style: { color: C.text } }, "\uCD1D \uACB0\uC81C\uAE08\uC561"),
+                    React.createElement("span", { className: "text-[16px] font-extrabold", style: { color: C.primary } }, won(cartTotal)))),
+            React.createElement("div", { className: "rounded-xl p-3", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "text-[12.5px] font-bold mb-2", style: { color: C.text } }, "\uBC30\uC1A1\uC9C0"),
+                hasAddress ? (React.createElement("div", { className: "space-y-0.5 text-[12.5px]", style: { color: C.secondary } },
+                    React.createElement("div", null,
+                        address.name,
+                        " \u00B7 ",
+                        address.phone),
+                    React.createElement("div", null, address.addr),
+                    requestLabel && React.createElement("div", null,
+                        "\uC694\uCCAD\uC0AC\uD56D: ",
+                        requestLabel))) : (React.createElement("div", { className: "text-[12.5px]", style: { color: C.danger } }, "\uBC30\uC1A1\uC9C0 \uBBF8\uC785\uB825"))),
+            React.createElement("div", { className: "rounded-xl p-3", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "text-[12.5px] font-bold mb-1", style: { color: C.text } }, "\uACB0\uC81C\uC218\uB2E8"),
+                React.createElement("div", { className: "text-[12.5px]", style: { color: C.secondary } }, payLabelMap[payMethod])),
+            React.createElement("div", { className: "rounded-xl p-3 text-left text-[11.5px] leading-relaxed space-y-1.5 mt-1", style: { background: C.successBg, color: C.primaryDark } },
+                React.createElement("div", { style: { paddingLeft: "1em", textIndent: "-1em" } }, "\u2022 \uC801\uAE08 \uD6C4\uC5D0\uB3C4 \uC5B8\uC81C\uB4E0 \uC0C1\uD488\uC740 \uB2E4\uC2DC \uB2F4\uC544\uBCFC \uC218 \uC788\uC2B5\uB2C8\uB2E4."),
+                React.createElement("div", { style: { paddingLeft: "1em", textIndent: "-1em" } }, "\u2022 \uBC84\uD2BC\uC744 \uB204\uB974\uB294 \uC21C\uAC04 \uC2E4\uC81C \uC0C1\uD488\uC740 \uC8FC\uBB38\uB418\uC9C0 \uC54A\uACE0 \uB3D9\uC77C\uD55C \uAE08\uC561\uC774 \uC790\uC720\uC801\uAE08 \uD1B5\uC7A5\uC73C\uB85C \uC790\uB3D9 \uC785\uAE08\uB429\uB2C8\uB2E4.")),
+            React.createElement("button", { onClick: confirmPayment, disabled: !hasAddress || cartItems.length === 0, className: "w-full h-12 rounded-xl text-white font-bold text-[14px] disabled:opacity-40", style: { background: C.primary } }, "\uACB0\uC81C\uD558\uAE30"))));
+}
+function DeliveryScreen({ go, cartCount, goRoot }) {
+    const pathRef = useRef(null);
+    const [pct, setPct] = useState(0);
+    const [pos, setPos] = useState({ x: 12, y: 78 });
+    const [arrived, setArrived] = useState(false);
+    const startRef = useRef(null);
+    useEffect(() => {
+        let raf;
+        const DURATION = 10000;
+        const step = (t) => {
+            if (!startRef.current)
+                startRef.current = t;
+            const elapsed = t - startRef.current;
+            const p = Math.min(1, elapsed / DURATION);
+            setPct(p);
+            if (pathRef.current) {
+                const len = pathRef.current.getTotalLength();
+                const pt = pathRef.current.getPointAtLength(len * p);
+                setPos({ x: pt.x, y: pt.y });
+            }
+            if (p < 1)
+                raf = requestAnimationFrame(step);
+            else
+                setArrived(true);
+        };
+        raf = requestAnimationFrame(step);
+        return () => cancelAnimationFrame(raf);
+    }, []);
+    const stages = [
+        { key: "order", label: "주문완료", Icon: CheckCircle2, at: 0 },
+        { key: "prep", label: "상품준비중", Icon: Package, at: 0.18 },
+        { key: "ship", label: "배송중", Icon: Truck, at: 0.45 },
+        { key: "done", label: "배송완료", Icon: HouseIcon, at: 1 },
+    ];
+    const stageIndex = stages.reduce((acc, s, i) => (pct >= s.at ? i : acc), 0);
+    return (React.createElement(Screen, { title: "\uBC30\uC1A1 \uD604\uD669", cartCount: cartCount, navKey: "cart", go: goRoot },
+        React.createElement("div", { className: "flex flex-col min-h-full p-4" },
+            React.createElement("div", { className: "rounded-2xl p-4 mb-4", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "flex items-center justify-between" }, stages.map((s, i) => (React.createElement(React.Fragment, { key: s.key },
+                    React.createElement("div", { className: "flex flex-col items-center gap-1.5" },
+                        React.createElement("div", { className: "w-8 h-8 rounded-full flex items-center justify-center transition-colors", style: { background: i <= stageIndex ? C.primary : C.border } },
+                            React.createElement(s.Icon, { size: 15, color: i <= stageIndex ? "#fff" : C.secondary, strokeWidth: 2 })),
+                        React.createElement("span", { className: "text-[10px] font-bold", style: { color: i <= stageIndex ? C.primary : C.secondary } }, s.label)),
+                    i < stages.length - 1 && (React.createElement("div", { className: "flex-1 h-1 mx-1 rounded-full -mt-4", style: { background: C.border } },
+                        React.createElement("div", { className: "h-1 rounded-full", style: { background: C.primary, width: `${Math.max(0, Math.min(1, (pct - s.at) / ((stages[i + 1].at - s.at) || 1))) * 100}%` } })))))))),
+            React.createElement("div", { className: "rounded-2xl p-3 flex-1 flex flex-col overflow-hidden", style: { background: "#EAF1EC" } },
+                React.createElement("svg", { viewBox: "0 0 100 100", className: "w-full flex-1" },
+                    [
+                        [4, 4, 14, 10], [20, 4, 12, 9], [4, 20, 13, 9],
+                        [80, 36, 16, 11], [80, 50, 16, 11], [80, 64, 16, 11], [80, 78, 16, 11],
+                        [30, 86, 16, 10], [50, 86, 15, 10], [2, 90, 10, 8],
+                    ].map(([x, y, w, h], i) => (React.createElement("rect", { key: i, x: x, y: y, width: w, height: h, rx: "1.4", fill: i % 3 === 0 ? "#DCEDE4" : "#E3ECE7", stroke: "#D3E3DA", strokeWidth: "0.5" }))),
+                    React.createElement("rect", { x: "40", y: "66", width: "12", height: "10", rx: "2", fill: "#D9EFD8" }),
+                    React.createElement("rect", { x: "66", y: "52", width: "10", height: "9", rx: "2", fill: "#D9EFD8" }),
+                    React.createElement("path", { d: "M 12 78 C 30 78, 8 52, 30 46 S 62 24, 50 14 S 82 8, 88 18", fill: "none", stroke: "#C7CCD1", strokeWidth: "6.5", strokeLinecap: "round" }),
+                    React.createElement("path", { d: "M 12 78 C 30 78, 8 52, 30 46 S 62 24, 50 14 S 82 8, 88 18", fill: "none", stroke: "#fff", strokeWidth: "0.8", strokeDasharray: "2.4 2.2", strokeLinecap: "round" }),
+                    React.createElement("path", { ref: pathRef, d: "M 12 78 C 30 78, 8 52, 30 46 S 62 24, 50 14 S 82 8, 88 18", fill: "none", stroke: "none" }),
+                    React.createElement("g", { transform: "translate(88,18)" },
+                        React.createElement("rect", { x: "-9", y: "-9", width: "18", height: "18", rx: "4", fill: arrived ? C.primary : "#fff", stroke: C.primary, strokeWidth: "1.2" }, arrived && React.createElement("animate", { attributeName: "opacity", values: "1;0.6;1", dur: "0.9s", repeatCount: "2" })),
+                        React.createElement("path", { d: "M -4.2 1.4 L -4.2 -1.6 L 0 -5.2 L 4.2 -1.6 L 4.2 1.4 Z", fill: arrived ? "#fff" : C.primary }),
+                        React.createElement("rect", { x: "-1.3", y: "-0.2", width: "2.6", height: "3.4", fill: arrived ? C.primary : "#fff" })),
+                    React.createElement("circle", { cx: "12", cy: "78", r: "2.6", fill: C.secondary }),
+                    React.createElement("g", { transform: `translate(${pos.x},${pos.y})` },
+                        React.createElement("circle", { r: "6.2", fill: "#fff", stroke: C.primary, strokeWidth: "1" }),
+                        React.createElement(Truck, { x: "-3.3", y: "-3.3", width: "6.6", height: "6.6", color: C.primary, strokeWidth: 2.6 })))),
+            React.createElement("div", { className: "text-center text-[12px] mt-4 mb-1", style: { color: C.secondary } }, "\uC0C1\uD488 \uB300\uC2E0 \uC5EC\uB7EC\uBD84\uC758 \uC801\uAE08\uC774 \uCC28\uACE1\uCC28\uACE1 \uC313\uC774\uACE0 \uC788\uC2B5\uB2C8\uB2E4."),
+            arrived && (React.createElement("button", { onClick: () => go("deliveryComplete"), className: "w-full h-12 rounded-xl text-white font-bold text-[14px] mt-3", style: { background: C.primary } }, "\uBC30\uC1A1\uC644\uB8CC \uD655\uC778\uD558\uAE30")))));
+}
+function DeliveryCompleteScreen({ go, cartCount, goRoot }) {
+    return (React.createElement(Screen, { title: "\uBC30\uC1A1 \uC644\uB8CC", cartCount: cartCount, navKey: "cart", go: goRoot },
+        React.createElement("div", { className: "p-4 flex flex-col items-center justify-center min-h-full", style: { background: C.successBg } },
+            React.createElement("div", { className: "rounded-2xl w-full py-8 px-6 text-center mb-6", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "relative w-20 h-20 mx-auto mb-4" },
+                    React.createElement("div", { className: "w-20 h-20 rounded-full flex items-center justify-center", style: { background: C.primary } },
+                        React.createElement(Package, { size: 36, color: "#fff", strokeWidth: 1.7 })),
+                    React.createElement("div", { className: "absolute -top-1 -right-1 w-7 h-7 rounded-full flex items-center justify-center border-2", style: { background: "#fff", borderColor: C.primary } },
+                        React.createElement(Check, { size: 14, color: C.primary, strokeWidth: 3.2 }))),
+                React.createElement("div", { className: "text-[15px] font-bold", style: { color: C.text } }, "\uBC30\uC1A1\uC774 \uC644\uB8CC\uB418\uC5C8\uC2B5\uB2C8\uB2E4"),
+                React.createElement("div", { className: "text-[12.5px] mt-1", style: { color: C.secondary } }, "\uC2E4\uC81C \uC0C1\uD488\uC740 \uBC1C\uC1A1\uB418\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4.")),
+            React.createElement("button", { onClick: () => go("savingsComplete"), className: "w-full h-12 rounded-xl text-white font-bold text-[14px]", style: { background: C.primary } }, "\uBC30\uC1A1 \uD655\uC778\uD558\uAE30"))));
+}
+function SavingsCompleteScreen({ lastSaved, totalSavings, goalCurrent, goalAmount, savingsHistoryLen, go, goRoot, cartCount }) {
+    const quote = CELEBRATE_QUOTES[savingsHistoryLen % CELEBRATE_QUOTES.length];
+    return (React.createElement(Screen, { title: "\uC801\uAE08 \uC644\uB8CC", cartCount: cartCount, navKey: "report", go: goRoot },
+        React.createElement("div", { className: "p-4 pb-6 space-y-5" },
+            React.createElement("div", { className: "text-center pt-8" },
+                React.createElement(PiggyBank, { size: 72, color: C.primary, className: "mx-auto mb-4" }),
+                React.createElement("div", { className: "text-[16px] font-extrabold", style: { color: C.text } },
+                    won(lastSaved),
+                    "\uC774",
+                    React.createElement("br", null),
+                    "\uC790\uC720\uC801\uAE08 \uD1B5\uC7A5\uC5D0 \uC785\uAE08\uB418\uC5C8\uC2B5\uB2C8\uB2E4."),
+                React.createElement("div", { className: "text-[13px] mt-2 whitespace-nowrap", style: { color: C.secondary } }, "\uCDA9\uB3D9\uAD6C\uB9E4 \uB300\uC2E0 \uBBF8\uB798\uB97C \uB2F4\uC558\uC5B4\uC694.")),
+            React.createElement("div", { className: "rounded-2xl p-4", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "flex items-center justify-between mb-1" },
+                    React.createElement("span", { className: "text-[12px]", style: { color: C.secondary } }, "\uB204\uC801 \uC801\uAE08"),
+                    React.createElement("span", { className: "text-[15px] font-extrabold", style: { color: C.text } }, won(totalSavings))),
+                React.createElement("div", { className: "flex items-center justify-between mb-1.5" },
+                    React.createElement("span", { className: "text-[12px]", style: { color: C.secondary } }, "\uBAA9\uD45C \uB2EC\uC131\uB960"),
+                    React.createElement("span", { className: "text-[12.5px] font-semibold", style: { color: C.primary } },
+                        Math.round((goalAmount ? goalCurrent / goalAmount : 0) * 100),
+                        "%")),
+                React.createElement("div", { className: "h-1.5 rounded-full w-full mb-1.5", style: { background: C.border } },
+                    React.createElement("div", { className: "h-1.5 rounded-full", style: { background: C.primary, width: `${Math.min(100, (goalAmount ? goalCurrent / goalAmount : 0) * 100)}%` } })),
+                React.createElement("div", { className: "text-[11.5px]", style: { color: C.secondary } }, goalAmount ? `남은 금액 ${won(Math.max(0, goalAmount - goalCurrent))}` : "목표를 설정하면 남은 금액을 볼 수 있어요.")),
+            React.createElement("div", { className: "rounded-2xl py-2.5 px-3.5 text-center", style: { background: C.successBg } },
+                React.createElement("span", { className: "text-[12px] font-semibold", style: { color: C.primaryDark } }, quote)),
+            React.createElement("div", { className: "flex flex-col gap-2 pt-1" },
+                React.createElement("button", { onClick: () => go("consumptionReport"), className: "w-full h-12 rounded-xl font-bold text-[13.5px]", style: { border: `1.5px solid ${C.primary}`, color: C.primary } }, "\uC18C\uBE44 \uC808\uAC10 \uB9AC\uD3EC\uD2B8 \uBCF4\uAE30"),
+                React.createElement("button", { onClick: () => goRoot("home"), className: "w-full h-12 rounded-xl text-white font-bold text-[13.5px]", style: { background: C.primary } }, "\uD648\uC73C\uB85C \uAC00\uAE30")))));
+}
+function ConsumptionReportScreen({ lastSaved, totalSavings, savingsHistory, go, goRoot, cartCount }) {
+    const grades = ["씨앗", "새싹", "나무", "숲", "지구지킴이"];
+    const gradeIdx = Math.min(grades.length - 1, Math.floor(savingsHistory.length / 3));
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstWeekday = new Date(year, month, 1).getDay(); // 0=Sun ... 6=Sat
+    const savedDays = new Set(savingsHistory.filter((h) => h.ts && sameMonth(h.ts)).map((h) => new Date(h.ts).getDate()));
+    const monthTotal = monthTotalOf(savingsHistory);
+    const topCat = topCategoryOf(savingsHistory);
+    const avg = savingsHistory.length ? totalSavings / savingsHistory.length : 0;
+    const WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
+    return (React.createElement(Screen, { title: "\uC18C\uBE44 \uC808\uAC10 \uB9AC\uD3EC\uD2B8", cartCount: cartCount, navKey: "report", go: goRoot },
+        React.createElement("div", { className: "p-4 space-y-3" },
+            React.createElement("div", { className: "rounded-2xl p-5", style: { background: `linear-gradient(135deg, ${C.primary}, ${C.primaryDeep})` } },
+                React.createElement("div", { className: "flex items-center justify-between" },
+                    React.createElement("div", null,
+                        React.createElement("div", { className: "text-white/85 text-[11.5px] mb-1" }, "\uC774\uBC88 \uC8FC\uBB38 \uC800\uCD95"),
+                        React.createElement("div", { className: "text-white text-2xl font-extrabold" }, won(lastSaved))),
+                    React.createElement("div", { className: "w-14 h-14 rounded-full bg-white/15 flex items-center justify-center" },
+                        React.createElement(PiggyBank, { size: 30, color: "#fff", strokeWidth: 1.4 })))),
+            React.createElement("div", { className: "grid grid-cols-3 gap-2" }, [
+                { label: (React.createElement(React.Fragment, null,
+                        "\uC774\uBC88 \uB2EC",
+                        React.createElement("br", null),
+                        "\uCD1D \uC808\uC57D")), value: won(monthTotal), Icon: PiggyBank, bg: "#E7F8F4" },
+                { label: "대체 소비", value: `${savingsHistory.length}건`, Icon: RotateCcw, bg: "#EAF3FF" },
+                { label: "충동구매 방지", value: `${savingsHistory.length}회`, Icon: Shield, bg: "#FFF3E8" },
+            ].map((c, i) => (React.createElement("div", { key: i, className: "rounded-2xl p-3 text-center", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "w-9 h-9 rounded-full mx-auto mb-1.5 flex items-center justify-center", style: { background: c.bg } },
+                    React.createElement(c.Icon, { size: 17, color: C.primaryDark })),
+                React.createElement("div", { className: "text-[10.5px] mb-0.5 leading-tight", style: { color: C.secondary } }, c.label),
+                React.createElement("div", { className: "text-[12.5px] font-extrabold", style: { color: C.text } }, c.value))))),
+            React.createElement("div", { className: "rounded-2xl p-3.5", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "text-[12.5px] font-bold mb-2", style: { color: C.text } },
+                    "\uC808\uC57D \uB2EC\uB825 \u00B7 ",
+                    month + 1,
+                    "\uC6D4"),
+                React.createElement("div", { className: "grid grid-cols-7 gap-1.5 mb-1.5" }, WEEKDAYS.map((w, i) => (React.createElement("div", { key: w, className: "text-center text-[10px] font-bold", style: { color: i === 0 ? C.danger : i === 6 ? C.primaryDark : C.secondary } }, w)))),
+                React.createElement("div", { className: "grid grid-cols-7 gap-1.5" },
+                    Array.from({ length: firstWeekday }, (_, i) => React.createElement("div", { key: `empty-${i}` })),
+                    Array.from({ length: daysInMonth }, (_, i) => i + 1).map((d) => (React.createElement("div", { key: d, className: "aspect-square rounded-lg flex items-center justify-center text-[10px] font-semibold", style: { background: savedDays.has(d) ? C.primary : C.bg, color: savedDays.has(d) ? "#fff" : C.secondary } }, d))))),
+            React.createElement("div", { className: "rounded-2xl p-3.5", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "text-[12.5px] font-bold mb-3", style: { color: C.text } }, "\uC808\uC57D \uB4F1\uAE09"),
+                React.createElement("div", { className: "flex items-center justify-between" }, grades.map((g, i) => (React.createElement(React.Fragment, { key: g },
+                    React.createElement("div", { className: "flex flex-col items-center gap-1" },
+                        React.createElement("div", { className: "w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold", style: { background: i <= gradeIdx ? C.primary : C.bg, color: i <= gradeIdx ? "#fff" : C.secondary } }, i + 1),
+                        React.createElement("span", { className: "text-[9.5px]", style: { color: i === gradeIdx ? C.primary : C.secondary, fontWeight: i === gradeIdx ? 700 : 400 } }, g)),
+                    i < grades.length - 1 && React.createElement("div", { className: "flex-1 h-px", style: { background: C.border } })))))),
+            React.createElement("div", { className: "rounded-2xl p-3.5", style: { background: C.successBg } },
+                React.createElement("div", { className: "text-[12.5px] font-bold mb-1.5", style: { color: C.text } }, "\u2726 AI \uBD84\uC11D"),
+                React.createElement("div", { className: "text-[12px] leading-relaxed space-y-0.5", style: { color: C.primaryDark } },
+                    React.createElement("div", { style: { paddingLeft: "1em", textIndent: "-1em" } }, topCat ? `• 가장 많이 담은 카테고리는 ${topCat}입니다.` : "• 아직 분석할 데이터가 없어요."),
+                    React.createElement("div", { style: { paddingLeft: "1em", textIndent: "-1em" } },
+                        "\u2022 \uD3C9\uADE0 \uCDA9\uB3D9\uAD6C\uB9E4 \uBC29\uC9C0 \uAE08\uC561\uC740 ",
+                        won(avg),
+                        "\uC785\uB2C8\uB2E4."),
+                    React.createElement("div", { style: { paddingLeft: "1em", textIndent: "-1em" } },
+                        "\u2022 \uC774\uBC88 \uB2EC \uC18C\uBE44 \uC808\uAC10 \uAE08\uC561\uC740 ",
+                        won(monthTotal),
+                        "\uC785\uB2C8\uB2E4.")),
+                React.createElement("div", { className: "text-[10.5px] mt-2 leading-relaxed space-y-0.5", style: { color: C.secondary } },
+                    React.createElement("div", { style: { paddingLeft: "1em", textIndent: "-1em" } }, "- \uC791\uC740 \uC18C\uBE44\uB97C \uC800\uCD95\uC73C\uB85C \uBC14\uAFB8\uB294 \uC2B5\uAD00\uC774 \uB9CC\uB4E4\uC5B4\uC9C0\uACE0 \uC788\uC5B4\uC694."),
+                    React.createElement("div", { style: { paddingLeft: "1em", textIndent: "-1em" } }, "- \uC774 \uCD94\uC138\uB77C\uBA74 \uB9CC\uAE30\uAE4C\uC9C0 \uBAA9\uD45C\uB97C \uB2EC\uC131\uD560 \uC218 \uC788\uC5B4\uC694."))),
+            React.createElement("div", { className: "flex flex-col gap-2" },
+                React.createElement("button", { onClick: () => go("carbonReport"), className: "w-full h-12 rounded-xl font-bold text-[13.5px]", style: { border: `1.5px solid ${C.primary}`, color: C.primary } }, "\uD0C4\uC18C \uC808\uAC10 \uB9AC\uD3EC\uD2B8 \uBCF4\uAE30"),
+                React.createElement("button", { onClick: () => goRoot("home"), className: "w-full h-12 rounded-xl text-white font-bold text-[13.5px]", style: { background: C.primary } }, "\uD648\uC73C\uB85C \uAC00\uAE30")))));
+}
+function CarbonReportScreen({ savingsHistory, goRoot, cartCount }) {
+    return (React.createElement(Screen, { title: "\uD0C4\uC18C \uC808\uAC10 \uB9AC\uD3EC\uD2B8", cartCount: cartCount, navKey: "report", go: goRoot },
+        React.createElement("div", { className: "p-4 space-y-3" },
+            React.createElement("div", { className: "rounded-2xl p-5 flex items-center gap-4", style: { background: `linear-gradient(135deg, ${C.primary}, ${C.primaryDeep})` } },
+                React.createElement("div", { className: "w-16 h-16 rounded-full bg-white flex items-center justify-center shrink-0" },
+                    React.createElement("span", { className: "text-lg font-extrabold", style: { color: C.primary } }, "B")),
+                React.createElement("div", null,
+                    React.createElement("div", { className: "text-white text-[12.5px] font-bold mb-1" }, "\uD658\uACBD \uBCF4\uD638 \uB4F1\uAE09 \u00B7 GREEN B"),
+                    React.createElement("div", { className: "text-white/85 text-[11.5px] leading-relaxed" },
+                        "\uCDA9\uB3D9\uAD6C\uB9E4 \uB300\uC2E0 \uBBF8\uB798\uB97C \uB2F4\uB294",
+                        React.createElement("br", null),
+                        "\uC791\uC740 \uC120\uD0DD\uC774 \uC9C0\uAD6C\uB3C4 \uD568\uAED8 \uC9C0\uCF1C\uC694."))),
+            React.createElement("div", { className: "grid grid-cols-2 gap-2" }, [
+                { label: "배송 감소", value: `${savingsHistory.length}건`, Icon: Truck, bg: "#EAF3FF" },
+                { label: "포장재 절약", value: `${savingsHistory.length * 2}개`, Icon: Shield, bg: "#FFF3E8" },
+                { label: "탄소 절감", value: `${(savingsHistory.length * 1.2).toFixed(1)}kg`, Icon: Leaf, bg: "#E7F8F4" },
+                { label: "나무 효과", value: `${Math.max(1, Math.round(savingsHistory.length / 3))}그루`, Icon: TreePine, bg: "#EFF7E5" },
+            ].map((c) => (React.createElement("div", { key: c.label, className: "rounded-2xl p-3 flex items-center gap-2.5", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "w-10 h-10 rounded-full flex items-center justify-center shrink-0", style: { background: c.bg } },
+                    React.createElement(c.Icon, { size: 18, color: C.primaryDark })),
+                React.createElement("div", null,
+                    React.createElement("div", { className: "text-[10.5px]", style: { color: C.secondary } }, c.label),
+                    React.createElement("div", { className: "text-[13px] font-extrabold", style: { color: C.text } }, c.value)))))),
+            React.createElement("div", { className: "rounded-2xl p-3.5", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "text-[12.5px] font-bold mb-2", style: { color: C.text } }, "\uD658\uACBD \uBC30\uC9C0"),
+                React.createElement("div", { className: "grid grid-cols-4 gap-2" }, [{ label: "첫 절약", Icon: Award }, { label: "절약왕", Icon: PiggyBank }, { label: "탄소지킴이", Icon: Leaf }, { label: "환경수호자", Icon: Shield }].map((b, i) => {
+                    const unlocked = savingsHistory.length > i * 2;
+                    return (React.createElement("div", { key: b.label, className: "flex flex-col items-center gap-1", style: { opacity: unlocked ? 1 : 0.4 } },
+                        React.createElement(IconBadge, { Icon: b.Icon, size: 40, bg: unlocked ? "#F0FBF9" : "#F1F1F1", color: unlocked ? C.primary : C.secondary }),
+                        React.createElement("span", { className: "text-[9.5px] text-center", style: { color: C.secondary } }, b.label)));
+                }))),
+            React.createElement("div", { className: "rounded-2xl p-3.5 text-[10.5px] leading-relaxed space-y-0.5", style: { background: C.successBg, color: C.secondary } },
+                React.createElement("div", { style: { paddingLeft: "1em", textIndent: "-1em" } }, "- \uC791\uC740 \uC18C\uBE44\uB97C \uC800\uCD95\uC73C\uB85C \uBC14\uAFB8\uB294 \uC2B5\uAD00\uC774 \uB9CC\uB4E4\uC5B4\uC9C0\uACE0 \uC788\uC5B4\uC694."),
+                React.createElement("div", { style: { paddingLeft: "1em", textIndent: "-1em" } }, "- \uC774 \uCD94\uC138\uB77C\uBA74 \uB9CC\uAE30\uAE4C\uC9C0 \uBAA9\uD45C\uB97C \uB2EC\uC131\uD560 \uC218 \uC788\uC5B4\uC694.")),
+            React.createElement("button", { onClick: () => goRoot("home"), className: "w-full h-12 rounded-xl text-white font-bold text-[14px]", style: { background: C.primary } }, "\uD648\uC73C\uB85C \uAC00\uAE30"))));
+}
+function GoalEditScreen({ goalName, goalAmount, applyGoal, goBack, cartCount, goRoot }) {
+    const [name, setName] = useState(goalName);
+    const [amount, setAmount] = useState(goalAmount ? String(goalAmount) : "");
+    const pickChip = (preset) => { setName(preset.name); setAmount(String(preset.amount)); };
+    const save = () => {
+        const amt = parseInt(amount.replace(/[^0-9]/g, ""), 10);
+        if (!name.trim() || !amt || amt <= 0)
+            return;
+        applyGoal(name.trim(), amt);
+        goBack();
+    };
+    const chipStyle = (active) => ({
+        border: `1.5px solid ${active ? C.primary : C.border}`,
+        background: active ? C.successBg : C.card,
+        color: active ? C.primaryDark : C.text,
+        fontWeight: active ? 700 : 500,
+        boxShadow: active ? `0 0 0 3px rgba(0,199,169,0.14)` : "none",
+    });
+    return (React.createElement(Screen, { title: "\uBAA9\uD45C \uC218\uC815", onBack: goBack, cartCount: cartCount, navKey: "my", go: goRoot },
+        React.createElement("div", { className: "p-4 space-y-4" },
+            React.createElement("div", { className: "flex flex-wrap gap-2" }, GOAL_PRESETS.map((p) => (React.createElement("button", { key: p.name, onClick: () => pickChip(p), className: "rounded-full px-4 py-2 text-[13px] transition-all", style: chipStyle(name === p.name && amount === String(p.amount)) }, p.name)))),
+            React.createElement("div", null,
+                React.createElement("div", { className: "text-[12.5px] font-semibold mb-1.5", style: { color: C.text } }, "\uBAA9\uD45C \uC774\uB984"),
+                React.createElement("input", { value: name, onChange: (e) => setName(e.target.value), placeholder: "\uC608: \uCEA0\uD551 \uC7A5\uBE44 \uAD6C\uB9E4", type: "text", className: "w-full h-11 rounded-lg px-3 text-[13.5px] outline-none", style: { border: `1.5px solid ${C.border}`, color: C.text } })),
+            React.createElement("div", null,
+                React.createElement("div", { className: "text-[12.5px] font-semibold mb-1.5", style: { color: C.text } }, "\uBAA9\uD45C \uAE08\uC561"),
+                React.createElement("input", { value: amount, onChange: (e) => setAmount(e.target.value.replace(/[^0-9]/g, "")), placeholder: "1500000", type: "text", inputMode: "numeric", className: "w-full h-11 rounded-lg px-3 text-[13.5px] outline-none", style: { border: `1.5px solid ${C.border}`, color: C.text } }),
+                amount && React.createElement("div", { className: "text-[11.5px] mt-1", style: { color: C.secondary } }, won(parseInt(amount || "0", 10)))),
+            React.createElement("button", { onClick: save, className: "w-full h-12 rounded-xl text-white font-bold text-[14px] mt-2", style: { background: C.primary } }, "\uBAA9\uD45C \uC800\uC7A5\uD558\uAE30"))));
+}
+function MyScreen({ userName, setUserName, level, totalSavings, savingsHistory, goalCurrent, goalAmount, goalName, go, goRoot, resetAll, cartCount }) {
+    const [editingName, setEditingName] = useState(false);
+    const [tempName, setTempName] = useState(userName);
+    useEffect(() => setTempName(userName), [userName]);
+    const goalPct = goalAmount ? Math.min(100, Math.round((goalAmount ? goalCurrent / goalAmount : 0) * 100)) : 0;
+    return (React.createElement(Screen, { title: "MY", cartCount: cartCount, navKey: "my", go: goRoot },
+        React.createElement("div", { className: "p-4 space-y-3" },
+            React.createElement("div", { className: "rounded-2xl p-4", style: { background: `linear-gradient(135deg, ${C.primary}, ${C.primaryDeep})` } },
+                React.createElement("div", { className: "flex items-center gap-3" },
+                    React.createElement("div", { className: "w-13 h-13 rounded-full bg-white/20 flex items-center justify-center shrink-0", style: { width: 52, height: 52 } },
+                        React.createElement(User, { size: 24, color: "#fff" })),
+                    React.createElement("div", { className: "flex-1 min-w-0" },
+                        React.createElement("div", { className: "flex items-center gap-1.5 flex-wrap" },
+                            React.createElement("span", { className: "text-[10.5px] font-bold px-2 py-0.5 rounded-full text-white", style: { background: "rgba(255,255,255,0.28)" } },
+                                "LV.",
+                                level),
+                            editingName ? (React.createElement("input", { autoFocus: true, value: tempName, onChange: (e) => setTempName(e.target.value), onBlur: () => { setUserName(tempName.trim() || "사용자"); setEditingName(false); }, onKeyDown: (e) => e.key === "Enter" && e.currentTarget.blur(), type: "text", className: "text-[14.5px] font-bold outline-none border-b bg-transparent text-white", style: { borderColor: "rgba(255,255,255,0.6)" } })) : (React.createElement("span", { className: "text-[14.5px] font-bold text-white truncate" },
+                                userName,
+                                "\uB2D8")),
+                            React.createElement("button", { onClick: () => { setTempName(userName); setEditingName(true); }, className: "p-0.5 active:opacity-60" },
+                                React.createElement(Edit2, { size: 12, color: "#fff" }))),
+                        React.createElement("div", { className: "text-[11px] mt-1", style: { color: "rgba(255,255,255,0.85)" } },
+                            "\uB2F4\uC544\uBD10\uC694\uC640 \uD568\uAED8 ",
+                            savingsHistory.length,
+                            "\uBC88 \uC808\uC57D\uD588\uC5B4\uC694")))),
+            React.createElement("div", { className: "rounded-2xl p-3.5", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "flex items-center justify-between mb-2" },
+                    React.createElement("div", { className: "flex items-center gap-1.5 min-w-0" },
+                        React.createElement(Target, { size: 15, color: C.primary, className: "shrink-0" }),
+                        React.createElement("span", { className: "text-[12.5px] font-bold truncate", style: { color: C.text } },
+                            "\uBAA9\uD45C \u00B7 ",
+                            goalName || "미설정")),
+                    React.createElement("button", { onClick: () => go("goalEdit"), className: "text-[11px] font-bold shrink-0", style: { color: C.primary } }, "\uC218\uC815")),
+                React.createElement("div", { className: "flex items-center justify-between mb-1.5" },
+                    React.createElement("span", { className: "text-[13px] font-bold", style: { color: C.text } }, goalAmount ? `${won(goalCurrent)} / ${won(goalAmount)}` : "목표를 설정해보세요"),
+                    React.createElement("span", { className: "text-[11.5px] font-extrabold", style: { color: C.primary } },
+                        goalPct,
+                        "%")),
+                React.createElement("div", { className: "h-1.5 rounded-full w-full", style: { background: C.border } },
+                    React.createElement("div", { className: "h-1.5 rounded-full", style: { background: C.primary, width: `${goalPct}%` } }))),
+            React.createElement("div", { className: "grid grid-cols-2 gap-2" }, [
+                { label: "이번 달 총 절약", value: won(totalSavings), Icon: PiggyBank, bg: "#E7F8F4" },
+                { label: "누적 적금", value: won(totalSavings), Icon: Wallet, bg: "#EAF3FF" },
+                { label: "절약 성공 횟수", value: `${savingsHistory.length}회`, Icon: Award, bg: "#FFF3E8" },
+                { label: "목표 달성률", value: `${goalPct}%`, Icon: Target, bg: "#EFF7E5" },
+            ].map((s) => (React.createElement("div", { key: s.label, className: "rounded-xl p-3", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "w-8 h-8 rounded-full flex items-center justify-center mb-1.5", style: { background: s.bg } },
+                    React.createElement(s.Icon, { size: 15, color: C.primaryDark })),
+                React.createElement("div", { className: "text-[10.5px]", style: { color: C.secondary } }, s.label),
+                React.createElement("div", { className: "text-[13.5px] font-extrabold mt-0.5", style: { color: C.text } }, s.value))))),
+            React.createElement("div", { className: "rounded-xl overflow-hidden", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } }, [
+                { label: "적금 내역", Icon: Wallet, action: null },
+                { label: "환경 보호 기록", Icon: Leaf, action: "carbonReport" },
+                { label: "계좌 관리", Icon: CreditCard, action: "accountManage" },
+                { label: "알림", Icon: Bell, action: "notifications" },
+                { label: "로그아웃", Icon: LogOut, action: null },
+            ].map((m, i, arr) => (React.createElement("button", { key: m.label, onClick: () => m.action && go(m.action), className: "w-full flex items-center gap-2.5 px-3.5 py-3 text-left active:bg-black/[0.02]", style: { borderBottom: i < arr.length - 1 ? `1px solid ${C.border}` : "none" } },
+                React.createElement(m.Icon, { size: 16, color: C.secondary }),
+                React.createElement("span", { className: "flex-1 text-[13px]", style: { color: C.text } }, m.label),
+                React.createElement(ChevronRight, { size: 15, color: C.secondary }))))),
+            React.createElement("div", { className: "rounded-xl p-3.5", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement("div", { className: "text-[12.5px] font-bold mb-2", style: { color: C.text } }, "\uC801\uAE08 \uB0B4\uC5ED"),
+                savingsHistory.length === 0 && React.createElement("div", { className: "text-[12px]", style: { color: C.secondary } }, "\uC544\uC9C1 \uC801\uAE08 \uB0B4\uC5ED\uC774 \uC5C6\uC5B4\uC694."),
+                savingsHistory.slice(0, 6).map((h, i) => (React.createElement("div", { key: i, className: "flex items-center justify-between py-1" },
+                    React.createElement("span", { className: "text-[12px]", style: { color: C.secondary } },
+                        h.date,
+                        h.time ? ` ${h.time}` : ""),
+                    React.createElement("span", { className: "text-[12.5px] font-semibold", style: { color: C.text } }, won(h.amount)))))),
+            React.createElement("button", { onClick: resetAll, className: "w-full h-11 rounded-xl font-semibold text-[13px] flex items-center justify-center gap-1.5", style: { border: `1px solid ${C.border}`, color: C.danger } },
+                React.createElement(RotateCcw, { size: 15 }),
+                " \uCCB4\uD5D8 \uB370\uC774\uD130 \uCD08\uAE30\uD654"))));
+}
+/* ------------------------------ 계좌 관리 ------------------------------ */
+const BANKS = ["농협은행", "국민은행", "신협", "신한은행", "우리은행", "부산은행", "iM뱅크", "카카오뱅크", "케이뱅크", "새마을금고", "기업은행", "제주은행"];
+const MAX_ACCOUNTS = 5;
+const BTN_OFF = "#B9C8AE";
+const fmtDate = (ts) => {
+    const d = new Date(ts);
+    return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+};
+const cardShadow = "0 1px 4px rgba(0,0,0,0.05)";
+function StepButtons({ prevLabel = "이전", nextLabel = "다음", onPrev, onNext, nextEnabled }) {
+    return (React.createElement("div", { className: "mt-auto pt-6 flex gap-2.5" },
+        React.createElement("button", { onClick: onPrev, className: "flex-1 h-12 rounded-xl text-white font-bold text-[14px]", style: { background: BTN_OFF } }, prevLabel),
+        onNext && (React.createElement("button", { onClick: () => nextEnabled && onNext(), disabled: !nextEnabled, className: "flex-1 h-12 rounded-xl text-white font-bold text-[14px] transition-colors", style: { background: nextEnabled ? C.primary : BTN_OFF, cursor: nextEnabled ? "pointer" : "default" } }, nextLabel))));
+}
+function EditToggle({ active, onClick }) {
+    return (React.createElement("button", { onClick: onClick, className: "p-2 -mr-1 active:opacity-60", "aria-label": "\uD3B8\uC9D1" },
+        React.createElement(Menu, { size: 21, color: active ? C.primary : C.text })));
+}
+function AccountManageScreen({ go, goBack, goRoot, cartCount, withdrawCount, depositCount }) {
+    const items = [
+        { label: "출금-계좌 관리", sub: `등록된 출금 계좌 ${withdrawCount}개`, Icon: Wallet, action: "withdrawAccounts" },
+        { label: "입금-자유적금 계좌 관리", sub: `등록된 적금 계좌 ${depositCount}개`, Icon: PiggyBank, action: "depositAccounts" },
+    ];
+    return (React.createElement(Screen, { title: "\uACC4\uC88C \uAD00\uB9AC", onBack: goBack, cartCount: cartCount, navKey: "my", go: goRoot },
+        React.createElement("div", { className: "p-4 flex flex-col gap-3" }, items.map((m) => (React.createElement("button", { key: m.label, onClick: () => go(m.action), className: "w-full rounded-2xl p-4 flex items-center gap-3 text-left active:opacity-70", style: { background: C.card, boxShadow: cardShadow } },
+            React.createElement(IconBadge, { Icon: m.Icon, ring: true }),
+            React.createElement("div", { className: "flex-1" },
+                React.createElement("div", { className: "text-[14px] font-bold", style: { color: C.text } }, m.label),
+                React.createElement("div", { className: "text-[11.5px] mt-0.5", style: { color: C.secondary } }, m.sub)),
+            React.createElement(ChevronRight, { size: 17, color: C.secondary })))))));
+}
+function AccountCard({ a, editing, index, count, onUp, onDown, onDelete }) {
+    return (React.createElement("div", { className: "rounded-2xl p-4 flex items-center gap-3", style: { background: C.card, boxShadow: cardShadow } },
+        React.createElement("div", { className: "flex-1 min-w-0" }, a.type === "dama" ? (React.createElement(React.Fragment, null,
+            React.createElement("div", { className: "text-[14px] font-extrabold", style: { color: C.primaryDark } }, a.name),
+            React.createElement("div", { className: "text-[12px] mt-1", style: { color: C.text } }, a.number),
+            React.createElement("div", { className: "text-[11.5px] mt-1.5 leading-relaxed", style: { color: C.secondary } },
+                "\uB9E4\uC6D4 ",
+                a.day,
+                "\uC77C ",
+                won(a.monthly),
+                " \uC790\uB3D9\uC774\uCCB4 \u00B7 ",
+                a.months,
+                "\uAC1C\uC6D4",
+                React.createElement("br", null),
+                "\uC5F0 ",
+                a.rate,
+                "% (\uC138\uC804) \u00B7 \uC608\uC0C1 \uC774\uC790 ",
+                won(a.interest),
+                React.createElement("br", null),
+                "\uAC1C\uC124\uC77C ",
+                fmtDate(a.ts)))) : (React.createElement(React.Fragment, null,
+            React.createElement("div", { className: "text-[14px] font-bold", style: { color: C.text } }, a.bank),
+            React.createElement("div", { className: "text-[12.5px] mt-1", style: { color: C.text } }, a.number),
+            React.createElement("div", { className: "text-[11.5px] mt-1", style: { color: C.secondary } },
+                "\uB4F1\uB85D\uC77C ",
+                fmtDate(a.ts))))),
+        editing && (React.createElement("div", { className: "flex items-center gap-1 shrink-0" },
+            React.createElement("button", { onClick: onUp, disabled: index === 0, className: "p-1.5 rounded-lg", style: { opacity: index === 0 ? 0.25 : 1, background: C.bg } },
+                React.createElement(ChevronUp, { size: 16, color: C.text })),
+            React.createElement("button", { onClick: onDown, disabled: index === count - 1, className: "p-1.5 rounded-lg", style: { opacity: index === count - 1 ? 0.25 : 1, background: C.bg } },
+                React.createElement(ChevronDown, { size: 16, color: C.text })),
+            React.createElement("button", { onClick: onDelete, className: "p-1.5 rounded-lg", style: { background: "#FDECEB" } },
+                React.createElement(Trash2, { size: 16, color: C.danger }))))));
+}
+function AccountListScreen({ kind, accounts, setAccounts, go, goBack, goRoot, cartCount }) {
+    const [editing, setEditing] = useState(false);
+    const [delId, setDelId] = useState(null);
+    const isW = kind === "withdraw";
+    const title = isW ? "출금-계좌 관리" : "입금-자유적금 계좌 관리";
+    const external = accounts.filter((a) => a.type !== "dama").length;
+    const hasDama = accounts.some((a) => a.type === "dama");
+    const full = external >= MAX_ACCOUNTS;
+    const move = (i, d) => setAccounts((prev) => {
+        const arr = [...prev];
+        const j = i + d;
+        if (j < 0 || j >= arr.length)
+            return prev;
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+        return arr;
+    });
+    const header = React.createElement(TopHeader, { title: title, onBack: goBack, right: React.createElement(EditToggle, { active: editing, onClick: () => setEditing((v) => !v) }) });
+    return (React.createElement(Screen, { header: header, navKey: "my", go: goRoot, cartCount: cartCount },
+        React.createElement(ConfirmModal, { open: delId !== null, title: "\uACC4\uC88C\uB97C \uC0AD\uC81C\uD560\uAE4C\uC694?", description: "\uC0AD\uC81C\uD55C \uACC4\uC88C\uB294 \uB2E4\uC2DC \uB4F1\uB85D\uD574\uC57C \uD574\uC694.", confirmLabel: "\uC0AD\uC81C", onConfirm: () => { setAccounts((prev) => prev.filter((a) => a.id !== delId)); setDelId(null); }, onCancel: () => setDelId(null) }),
+        React.createElement("div", { className: "p-4 flex flex-col gap-3" },
+            accounts.length === 0 && (React.createElement("div", { className: "rounded-2xl p-6 text-center text-[12.5px]", style: { background: C.card, color: C.secondary, boxShadow: cardShadow } }, "\uB4F1\uB85D\uB41C \uACC4\uC88C\uAC00 \uC5C6\uC5B4\uC694.")),
+            accounts.map((a, i) => (React.createElement(AccountCard, { key: a.id, a: a, editing: editing, index: i, count: accounts.length, onUp: () => move(i, -1), onDown: () => move(i, 1), onDelete: () => setDelId(a.id) }))),
+            editing && accounts.length > 0 && React.createElement("div", { className: "text-[11.5px] text-center", style: { color: C.secondary } }, "\u25B2\u25BC\uB85C \uC21C\uC11C\uB97C \uBC14\uAFB8\uACE0, \uD734\uC9C0\uD1B5\uC73C\uB85C \uC0AD\uC81C\uD560 \uC218 \uC788\uC5B4\uC694."),
+            React.createElement("button", { onClick: () => !full && go({ screen: "addAccount", kind }), disabled: full, className: "w-full h-12 rounded-xl font-bold text-[14px] flex items-center justify-center gap-1.5", style: { background: full ? BTN_OFF : C.primary, color: "#fff" } },
+                React.createElement(Plus, { size: 17 }),
+                " \uACC4\uC88C\uB4F1\uB85D (",
+                external,
+                "/",
+                MAX_ACCOUNTS,
+                ")"),
+            !isW && (React.createElement("button", { onClick: () => !hasDama && go("createSavings"), disabled: hasDama, className: "w-full h-12 rounded-xl font-bold text-[14px] flex items-center justify-center gap-1.5", style: { background: C.card, border: `1.5px solid ${hasDama ? C.border : C.primary}`, color: hasDama ? C.secondary : C.primaryDark } },
+                React.createElement(PiggyBank, { size: 17 }),
+                " ",
+                hasDama ? "DAMA-자유적금 계좌는 1개만 만들 수 있어요" : "DAMA-자유적금 계좌 만들기")),
+            full && React.createElement("div", { className: "text-[11.5px] text-center", style: { color: C.secondary } },
+                "\uB2E4\uB978 \uC740\uD589 \uACC4\uC88C\uB294 \uCD5C\uB300 ",
+                MAX_ACCOUNTS,
+                "\uAC1C\uAE4C\uC9C0 \uB4F1\uB85D\uD560 \uC218 \uC788\uC5B4\uC694."))));
+}
+function AddAccountScreen({ kind, accounts, setAccounts, goBack, goRoot, cartCount }) {
+    const isW = kind === "withdraw";
+    const [step, setStep] = useState(0);
+    const [bank, setBank] = useState("");
+    const [num, setNum] = useState("");
+    const [agree, setAgree] = useState([false, false, false]);
+    const [code, setCode] = useState("");
+    const [phone, setPhone] = useState("");
+    const [ars, setArs] = useState(["", ""]);
+    const [done, setDone] = useState(false);
+    const r0 = useRef(null);
+    const r1 = useRef(null);
+    const timer = useRef(null);
+    useEffect(() => () => { if (timer.current)
+        clearTimeout(timer.current); }, []);
+    const taken = accounts.filter((a) => a.type !== "dama").map((a) => a.bank);
+    const numDigits = num.replace(/[^0-9]/g, "");
+    const phoneOk = phone.length >= 10;
+    const agreeLabels = [
+        "오픈뱅킹공동업무 자동계좌이체 약관(필수)",
+        "개인(신용)정보 제3자 제공동의(필수)",
+        `${isW ? "출금" : "입금"}이체 개인정보 수집•이용 동의 (필수)`,
+    ];
+    const finish = (nextArs) => {
+        if (done)
+            return;
+        setDone(true);
+        const now = Date.now();
+        setAccounts((prev) => [...prev, { id: `${now}-${Math.random()}`, type: "bank", bank, number: num.trim(), ts: now }]);
+        timer.current = setTimeout(() => goBack(), 2000);
+    };
+    const setArsDigit = (i, v) => {
+        const d = v.replace(/[^0-9]/g, "").slice(-1);
+        const next = [...ars];
+        next[i] = d;
+        setArs(next);
+        if (d && i === 0 && r1.current)
+            r1.current.focus();
+        if (next[0] && next[1] && phoneOk)
+            finish(next);
+    };
+    const onBack = () => { if (done)
+        return; step > 0 ? setStep(step - 1) : goBack(); };
+    const titles = [isW ? "출금 계좌 등록" : "적금 계좌 등록", "계좌번호 입력", "계좌 본인 확인", "ARS 전화 인증"];
+    const inputStyle = { border: `1.5px solid ${C.border}`, color: C.text };
+    let content;
+    if (step === 0) {
+        content = (React.createElement(React.Fragment, null,
+            React.createElement("div", { className: "text-[15px] font-bold mb-1", style: { color: C.text } }, "\uC740\uD589\uC744 \uC120\uD0DD\uD574\uC8FC\uC138\uC694"),
+            React.createElement("div", { className: "text-[12px] mb-3", style: { color: C.secondary } }, "\uC774\uBBF8 \uB4F1\uB85D\uD55C \uC740\uD589\uC740 \uC120\uD0DD\uD560 \uC218 \uC5C6\uC5B4\uC694."),
+            React.createElement("div", { className: "grid grid-cols-3 gap-2" }, BANKS.map((b) => {
+                const used = taken.includes(b);
+                const sel = bank === b;
+                return (React.createElement("button", { key: b, disabled: used, onClick: () => setBank(b), className: "h-14 rounded-xl text-[12.5px] font-semibold flex flex-col items-center justify-center", style: { background: sel ? C.successBg : C.card, border: `1.5px solid ${sel ? C.primary : C.border}`, color: used ? "#B5BABF" : sel ? C.primaryDark : C.text, boxShadow: sel ? "0 0 0 3px rgba(0,199,169,0.14)" : "none" } },
+                    b,
+                    used && React.createElement("span", { className: "text-[10px] font-normal" }, "\uB4F1\uB85D\uB428")));
+            })),
+            React.createElement(StepButtons, { onPrev: goBack, onNext: () => setStep(1), nextEnabled: !!bank })));
+    }
+    else if (step === 1) {
+        const canNext = numDigits.length >= 8 && agree.every(Boolean);
+        content = (React.createElement(React.Fragment, null,
+            React.createElement("div", { className: "text-[15px] font-bold mb-3", style: { color: C.text } },
+                bank,
+                " ",
+                isW ? "계좌번호" : "적금 계좌번호"),
+            React.createElement("input", { value: num, onChange: (e) => setNum(e.target.value.replace(/[^0-9-]/g, "").slice(0, 20)), placeholder: "\uACC4\uC88C\uBC88\uD638\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694 ('-' \uC5C6\uC774)", type: "text", inputMode: "numeric", className: "w-full h-12 rounded-lg px-3 text-[14px] outline-none", style: inputStyle }),
+            React.createElement("div", { className: "mt-4 flex flex-col gap-2.5" }, agreeLabels.map((l, i) => (React.createElement("button", { key: l, onClick: () => setAgree((a) => a.map((v, k) => (k === i ? !v : v))), className: "flex items-center gap-2 text-left" },
+                React.createElement("span", { className: "w-5 h-5 rounded-full flex items-center justify-center shrink-0", style: { background: agree[i] ? C.primary : "#E4E6E8" } },
+                    React.createElement(Check, { size: 13, color: "#fff", strokeWidth: 3 })),
+                React.createElement("span", { className: "text-[12.5px]", style: { color: "#9AA0A6" } }, l))))),
+            React.createElement(StepButtons, { onPrev: () => setStep(0), onNext: () => setStep(2), nextEnabled: canNext })));
+    }
+    else if (step === 2) {
+        const ok = code.length === 3;
+        content = (React.createElement(React.Fragment, null,
+            React.createElement("div", { className: "text-[14.5px] font-bold leading-snug mb-3", style: { color: C.text } }, "\uBCF8\uC778 \uACC4\uC88C\uD655\uC778\uC744 \uC704\uD574 \uC785\uB825\uD558\uC2E0 \uC740\uD589\uC758 \uACC4\uC88C\uBC88\uD638\uB85C 1\uC6D0\uC744 \uC785\uAE08\uD588\uC2B5\uB2C8\uB2E4."),
+            React.createElement("div", { className: "rounded-xl p-3.5 mb-4", style: { background: "#EEF0F1" } },
+                React.createElement("div", { className: "text-[11.5px] font-semibold mb-1.5", style: { color: C.secondary } }, "\uACC4\uC88C \uAC70\uB798\uB0B4\uC5ED \uC608\uC2DC"),
+                React.createElement("div", { className: "text-[12.5px]", style: { color: C.text } }, fmtDate(Date.now())),
+                React.createElement("div", { className: "text-[13px] font-bold", style: { color: C.text } }, "DAMA 000"),
+                React.createElement("div", { className: "text-[12.5px]", style: { color: C.text } }, "\uC785\uAE08 1\uC6D0")),
+            React.createElement("div", { className: "text-[13px] font-semibold leading-snug mb-2", style: { color: C.text } }, "\uACE0\uAC1D\uB2D8\uC758 \uACC4\uC88C \uAC70\uB798\uB0B4\uC5ED\uC5D0\uC11C \uC785\uAE08\uB41C 1\uC6D0\uC758 \uC785\uAE08\uC790\uBA85 \uC22B\uC790 3\uC790\uB9AC\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694."),
+            React.createElement("input", { value: code, onChange: (e) => setCode(e.target.value.replace(/[^0-9]/g, "").slice(0, 3)), placeholder: "\uC22B\uC790 3\uC790\uB9AC", type: "text", inputMode: "numeric", className: "w-full h-12 rounded-lg px-3 text-[16px] tracking-[0.4em] text-center outline-none", style: inputStyle }),
+            React.createElement(StepButtons, { prevLabel: "\uC774\uC804", nextLabel: "ARS \uC804\uD654 \uC778\uC99D", onPrev: () => setStep(1), onNext: () => setStep(3), nextEnabled: ok })));
+    }
+    else {
+        content = (React.createElement(React.Fragment, null,
+            React.createElement("div", { className: "text-[15px] font-bold mb-3", style: { color: C.text } }, "\uD578\uB4DC\uD3F0 \uBC88\uD638"),
+            React.createElement("input", { value: phone, onChange: (e) => setPhone(e.target.value.replace(/[^0-9]/g, "").slice(0, 11)), placeholder: "\uD578\uB4DC\uD3F0 \uBC88\uD638\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694", type: "text", inputMode: "numeric", className: "w-full h-12 rounded-lg px-3 text-[14px] outline-none", style: inputStyle }),
+            React.createElement("div", { className: "text-[12.5px] font-semibold mt-5 mb-2", style: { color: C.text } }, "ARS \uC778\uC99D\uBC88\uD638 \uB450 \uC790\uB9AC"),
+            React.createElement("div", { className: "flex gap-2.5" }, [0, 1].map((i) => (React.createElement("input", { key: i, ref: i === 0 ? r0 : r1, value: ars[i], disabled: !phoneOk || done, onChange: (e) => setArsDigit(i, e.target.value), onKeyDown: (e) => { if (i === 1 && e.key === "Backspace" && !ars[1] && r0.current)
+                    r0.current.focus(); }, type: "text", inputMode: "numeric", maxLength: 1, className: "w-14 h-14 rounded-lg text-center text-[20px] font-bold outline-none", style: { ...inputStyle, background: phoneOk ? C.card : "#F1F2F3" } })))),
+            React.createElement("div", { className: "text-[11.5px] mt-2", style: { color: C.secondary } }, phoneOk ? "ARS 전화에서 안내하는 두 자리 숫자를 입력해주세요." : "핸드폰 번호를 먼저 입력해주세요."),
+            React.createElement(StepButtons, { onPrev: () => setStep(2) })));
+    }
+    return (React.createElement(Screen, { title: titles[step], onBack: onBack, cartCount: cartCount, navKey: "my", go: goRoot },
+        done && (React.createElement("div", { className: "absolute left-4 right-4 top-20 z-30 rounded-xl py-3.5 text-center text-[13.5px] font-bold text-white shadow-lg", style: { background: C.primary } }, "\uACC4\uC88C \uB4F1\uB85D\uC774 \uC644\uB8CC\uB418\uC5C8\uC2B5\uB2C8\uB2E4")),
+        React.createElement("div", { className: "min-h-full flex flex-col p-4" }, content)));
+}
+function CreateSavingsScreen({ setDepositAccounts, goBack, goRoot, cartCount, showToast }) {
+    const RATE = 2.5;
+    const [step, setStep] = useState(0);
+    const [monthly, setMonthly] = useState("");
+    const [months, setMonths] = useState("");
+    const [day, setDay] = useState(0);
+    const m = parseInt(monthly || "0", 10);
+    const n = parseInt(months || "0", 10);
+    const principal = m * n;
+    const interest = Math.round(m * (n * (n + 1)) / 2 * (RATE / 100 / 12));
+    const valid = m >= 1000 && n >= 1 && n <= 60;
+    const inputStyle = { border: `1.5px solid ${C.border}`, color: C.text };
+    const onBack = () => (step > 0 ? setStep(step - 1) : goBack());
+    const create = () => {
+        const now = Date.now();
+        const number = `DAMA-${String(Math.floor(Math.random() * 1e12)).padStart(12, "0")}`;
+        setDepositAccounts((prev) => (prev.some((a) => a.type === "dama") ? prev
+            : [...prev, { id: `${now}-${Math.random()}`, type: "dama", name: "DAMA-자유적금 계좌", number, monthly: m, months: n, day, rate: RATE, interest, ts: now }]));
+        showToast("DAMA-자유적금 계좌가 만들어졌어요");
+        goBack();
+    };
+    return (React.createElement(Screen, { title: step === 0 ? "DAMA-자유적금 만들기" : "자동이체 날짜 선택", onBack: onBack, cartCount: cartCount, navKey: "my", go: goRoot },
+        React.createElement("div", { className: "min-h-full flex flex-col p-4" }, step === 0 ? (React.createElement(React.Fragment, null,
+            React.createElement("div", { className: "text-[11px] mb-3", style: { color: C.secondary } },
+                "\uCD5C\uACE0 \uC5F0 3% \u00B7 \uAE30\uBCF8 \uC5F0 ",
+                RATE,
+                "% (\uC138\uC804) \uAE30\uC900\uC774\uC5D0\uC694."),
+            React.createElement("div", { className: "flex flex-col gap-2.5" },
+                React.createElement("div", { className: "rounded-2xl p-4", style: { background: C.successBg } },
+                    React.createElement("div", { className: "text-[12px]", style: { color: C.primaryDark } }, "\uC774\uB807\uAC8C \uBAA8\uC73C\uBA74 \uC774\uC790"),
+                    React.createElement("div", { className: "text-[22px] font-extrabold mt-0.5", style: { color: C.primaryDark } }, valid ? won(interest) : "0원")),
+                React.createElement("div", { className: "rounded-2xl p-4", style: { background: C.card, boxShadow: cardShadow } },
+                    React.createElement("div", { className: "text-[12px]", style: { color: C.secondary } }, "\uC6D0\uAE08"),
+                    React.createElement("div", { className: "text-[18px] font-extrabold mt-0.5", style: { color: C.text } }, valid ? won(principal) : "0원")),
+                React.createElement("div", { className: "rounded-2xl p-4", style: { background: C.card, boxShadow: cardShadow } },
+                    React.createElement("div", { className: "text-[12.5px] font-semibold mb-2", style: { color: C.text } }, "\uD55C \uB2EC\uC5D0"),
+                    React.createElement("div", { className: "flex items-center gap-2" },
+                        React.createElement("input", { value: monthly, onChange: (e) => setMonthly(e.target.value.replace(/[^0-9]/g, "").slice(0, 9)), placeholder: "\uAE08\uC561 \uC785\uB825 (1,000\uC6D0 \uC774\uC0C1)", type: "text", inputMode: "numeric", className: "flex-1 h-11 rounded-lg px-3 text-[14px] outline-none", style: inputStyle }),
+                        React.createElement("span", { className: "text-[13px]", style: { color: C.text } }, "\uC6D0")),
+                    m > 0 && React.createElement("div", { className: "text-[11.5px] mt-1", style: { color: C.secondary } }, won(m))),
+                React.createElement("div", { className: "rounded-2xl p-4", style: { background: C.card, boxShadow: cardShadow } },
+                    React.createElement("div", { className: "flex items-center gap-2" },
+                        React.createElement("input", { value: months, onChange: (e) => setMonths(e.target.value.replace(/[^0-9]/g, "").slice(0, 2)), placeholder: "\uAE30\uAC04 (1~60)", type: "text", inputMode: "numeric", className: "flex-1 h-11 rounded-lg px-3 text-[14px] outline-none", style: inputStyle }),
+                        React.createElement("span", { className: "text-[13px]", style: { color: C.text } }, "\uAC1C\uC6D4 \uBAA8\uC73C\uAE30")))),
+            React.createElement(StepButtons, { onPrev: goBack, onNext: () => setStep(1), nextEnabled: valid }))) : (React.createElement(React.Fragment, null,
+            React.createElement("div", { className: "text-[15px] font-bold mb-1", style: { color: C.text } }, "\uB9E4\uC6D4 \uC790\uB3D9\uC774\uCCB4 \uB0A0\uC9DC\uB97C \uC120\uD0DD\uD574\uC8FC\uC138\uC694"),
+            React.createElement("div", { className: "text-[12px] mb-3", style: { color: C.secondary } },
+                "\uB9E4\uC6D4 ",
+                won(m),
+                "\uC529 ",
+                n,
+                "\uAC1C\uC6D4 \u00B7 \uC608\uC0C1 \uC774\uC790 ",
+                won(interest)),
+            React.createElement("div", { className: "grid grid-cols-7 gap-1.5" }, Array.from({ length: 28 }, (_, i) => i + 1).map((d) => (React.createElement("button", { key: d, onClick: () => setDay(d), className: "h-10 rounded-lg text-[12.5px] font-semibold", style: { background: day === d ? C.primary : C.card, color: day === d ? "#fff" : C.text, border: `1px solid ${day === d ? C.primary : C.border}` } }, d)))),
+            React.createElement(StepButtons, { nextLabel: "\uC790\uC720\uC801\uAE08 \uB9CC\uB4E4\uAE30", onPrev: () => setStep(0), onNext: create, nextEnabled: day > 0 }))))));
+}
+function NotificationsScreen({ goRoot, cartCount }) {
+    return (React.createElement(Screen, { title: "\uC54C\uB9BC", cartCount: cartCount, navKey: "my", go: goRoot },
+        React.createElement("div", { className: "p-3 space-y-2" }, NOTIFICATIONS.map((n) => (React.createElement("div", { key: n.id, className: "rounded-xl p-3 flex items-center gap-2.5", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+            React.createElement(IconBadge, { Icon: Bell, size: 36 }),
+            React.createElement("span", { className: "text-[13px]", style: { color: C.text } }, n.text)))))));
+}
+function highlightMatch(name, q) {
+    if (!q)
+        return name;
+    const idx = name.toLowerCase().indexOf(q.toLowerCase());
+    if (idx === -1)
+        return name;
+    return (React.createElement(React.Fragment, null,
+        name.slice(0, idx),
+        React.createElement("span", { style: { color: C.primary, fontWeight: 700 } }, name.slice(idx, idx + q.length)),
+        name.slice(idx + q.length)));
+}
+function SearchScreen({ searchInput, setSearchInput, searchQuery, searchSubmitted, setSearchSubmitted, searchResults, recentSearches, runSearch, clearRecentSearches, removeRecentSearch, openProduct, goBack }) {
+    const inputRef = useRef(null);
+    useEffect(() => { inputRef.current && inputRef.current.focus(); }, []);
+    const submit = () => { if (searchInput.trim())
+        runSearch(searchInput.trim()); };
+    const handleChange = (e) => {
+        const v = e.target.value;
+        setSearchInput(v);
+        if (!v.trim())
+            setSearchSubmitted(false); // cleared query -> back to recent/popular view
+    };
+    const clearInput = () => { setSearchInput(""); setSearchSubmitted(false); };
+    return (React.createElement("div", { className: "flex flex-col h-full" },
+        React.createElement("div", { className: "shrink-0 flex items-center gap-2 px-2 h-14 border-b", style: { background: C.card, borderColor: C.border } },
+            React.createElement("button", { onClick: goBack, className: "p-2 active:opacity-60" },
+                React.createElement(ArrowLeft, { size: 20, color: C.text })),
+            React.createElement("div", { className: "flex-1 h-9 rounded-full flex items-center px-3 gap-2", style: { border: `1.5px solid ${C.primary}` } },
+                React.createElement(Search, { size: 15, color: C.secondary }),
+                React.createElement("input", { ref: inputRef, value: searchInput, onChange: handleChange, onKeyDown: (e) => e.key === "Enter" && submit(), placeholder: "\uC0C1\uD488\uC744 \uAC80\uC0C9\uD574\uBCF4\uC138\uC694", type: "text", className: "flex-1 text-[13.5px] outline-none bg-transparent", style: { color: C.text } }),
+                searchInput && React.createElement("button", { onClick: clearInput },
+                    React.createElement(X, { size: 14, color: C.secondary }))),
+            React.createElement("button", { onClick: submit, className: "text-[13px] font-bold px-1", style: { color: C.primary } }, "\uAC80\uC0C9")),
+        React.createElement("div", { className: "flex-1 overflow-y-auto", style: { background: C.bg } }, !searchSubmitted ? (React.createElement("div", { className: "p-4 space-y-5" },
+            React.createElement("div", null,
+                React.createElement("div", { className: "flex items-center justify-between mb-2" },
+                    React.createElement("span", { className: "text-[13px] font-bold", style: { color: C.text } }, "\uCD5C\uADFC \uAC80\uC0C9\uC5B4"),
+                    recentSearches.length > 0 && React.createElement("button", { onClick: clearRecentSearches, className: "text-[11.5px]", style: { color: C.secondary } }, "\uC804\uCCB4 \uC0AD\uC81C")),
+                recentSearches.length === 0 ? (React.createElement("div", { className: "text-[12px]", style: { color: C.secondary } }, "\uCD5C\uADFC \uAC80\uC0C9\uC5B4\uAC00 \uC5C6\uC5B4\uC694.")) : (React.createElement("div", { className: "flex flex-wrap gap-2" }, recentSearches.map((term) => (React.createElement("div", { key: term, className: "flex items-center gap-1.5 rounded-full px-3 py-1.5", style: { border: `1px solid ${C.border}` } },
+                    React.createElement("button", { onClick: () => { setSearchInput(term); runSearch(term); }, className: "text-[12px]", style: { color: C.text } }, term),
+                    React.createElement("button", { onClick: () => removeRecentSearch(term) },
+                        React.createElement(X, { size: 11, color: C.secondary })))))))),
+            React.createElement("div", null,
+                React.createElement("div", { className: "text-[13px] font-bold mb-2", style: { color: C.text } }, "\uC778\uAE30 \uAC80\uC0C9\uC5B4"),
+                React.createElement("div", { className: "grid grid-cols-2 gap-y-2" }, POPULAR_SEARCHES.map((term, i) => (React.createElement("button", { key: term, onClick: () => { setSearchInput(term); runSearch(term); }, className: "flex items-center gap-2 text-left py-0.5" },
+                    React.createElement("span", { className: "text-[12.5px] font-extrabold w-4", style: { color: i < 3 ? C.primary : C.secondary } }, i + 1),
+                    React.createElement("span", { className: "text-[13px]", style: { color: C.text } }, term)))))))) : (React.createElement("div", { className: "p-3" },
+            React.createElement("div", { className: "text-[12px] mb-2 px-1", style: { color: C.secondary } },
+                "'",
+                searchQuery,
+                "' \uAC80\uC0C9\uACB0\uACFC ",
+                searchResults.length,
+                "\uAC1C"),
+            searchResults.length === 0 ? (React.createElement("div", { className: "text-center py-16 text-[13px]", style: { color: C.secondary } },
+                "\uAC80\uC0C9 \uACB0\uACFC\uAC00 \uC5C6\uC5B4\uC694.",
+                React.createElement("br", null),
+                "\uB2E4\uB978 \uAC80\uC0C9\uC5B4\uB85C \uC2DC\uB3C4\uD574\uBCF4\uC138\uC694.")) : (React.createElement("div", { className: "space-y-2" }, searchResults.map((p) => (React.createElement("button", { key: p.id, onClick: () => openProduct(p.id), className: "w-full flex items-center gap-3 rounded-xl p-2.5 text-left active:opacity-70", style: { background: C.card, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" } },
+                React.createElement(IconBadge, { Icon: p.Icon, size: 50 }),
+                React.createElement("div", { className: "flex-1 min-w-0" },
+                    React.createElement("div", { className: "text-[13px] font-semibold truncate", style: { color: C.text } }, highlightMatch(p.name, searchQuery)),
+                    React.createElement("div", { className: "text-[13.5px] font-extrabold mt-0.5", style: { color: C.text } }, won(p.price)))))))))))));
+}
+/* --------------------------------- App --------------------------------- */
+function App() {
+    const [nav, setNav] = useState([{ screen: "splash" }]);
+    const current = nav[nav.length - 1];
+    const screen = current.screen;
+    const go = useCallback((s) => setNav((prev) => [...prev, typeof s === "string" ? { screen: s } : s]), []);
+    const goRoot = useCallback((s) => setNav([typeof s === "string" ? { screen: s } : s]), []);
+    const goBack = useCallback(() => setNav((prev) => (prev.length > 1 ? prev.slice(0, -1) : prev)), []);
+    const [cart, setCart] = useState([]);
+    const [wishlist, setWishlist] = useState([]);
+    const [toast, setToast] = useState("");
+    const [address, setAddress] = useState({ name: "", phone: "", addr: "", request: "", requestCustom: "" });
+    const [payMethod, setPayMethod] = useState("account");
+    const [savingsHistory, setSavingsHistory] = useState(DEFAULTS.savingsHistory);
+    const [lastSaved, setLastSaved] = useState(0);
+    const [userName, setUserName] = useState(DEFAULTS.userName);
+    const [level] = useState(1);
+    const [goalName, setGoalName] = useState(DEFAULTS.goalName);
+    const [goalAmount, setGoalAmount] = useState(DEFAULTS.goalAmount);
+    const [goalCurrent, setGoalCurrent] = useState(DEFAULTS.goalCurrent);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchInput, setSearchInput] = useState("");
+    const [recentSearches, setRecentSearches] = useState([]);
+    const [searchSubmitted, setSearchSubmitted] = useState(false);
+    const totalSavings = useMemo(() => savingsHistory.reduce((s, h) => s + h.amount, 0), [savingsHistory]);
+    const todaySavings = useMemo(() => {
+        const today = todayStr();
+        return savingsHistory.filter((h) => h.date === today && (!h.ts || new Date(h.ts).toDateString() === new Date().toDateString())).reduce((s, h) => s + h.amount, 0);
+    }, [savingsHistory]);
+    useEffect(() => {
+        if (screen === "splash") {
+            const t = setTimeout(() => goRoot("home"), 2000);
+            return () => clearTimeout(t);
+        }
+    }, [screen, goRoot]);
+    const [withdrawAccounts, setWithdrawAccounts] = useState([]);
+    const [depositAccounts, setDepositAccounts] = useState([]);
+    const [loaded, setLoaded] = useState(false);
+    useEffect(() => {
+        (async () => {
+            try {
+                const r = await window.storage.get("app-state", false);
+                const d = JSON.parse(r.value);
+                if (Array.isArray(d.savingsHistory))
+                    setSavingsHistory(d.savingsHistory);
+                if (typeof d.goalName === "string")
+                    setGoalName(d.goalName);
+                if (typeof d.goalAmount === "number")
+                    setGoalAmount(d.goalAmount);
+                if (typeof d.goalCurrent === "number")
+                    setGoalCurrent(d.goalCurrent);
+                if (typeof d.userName === "string")
+                    setUserName(d.userName);
+                if (Array.isArray(d.withdrawAccounts))
+                    setWithdrawAccounts(d.withdrawAccounts);
+                if (Array.isArray(d.depositAccounts))
+                    setDepositAccounts(d.depositAccounts);
+            }
+            catch (e) { }
+            setLoaded(true);
+        })();
+    }, []);
+    useEffect(() => {
+        if (!loaded)
+            return;
+        try {
+            window.storage.set("app-state", JSON.stringify({ savingsHistory, goalName, goalAmount, goalCurrent, userName, withdrawAccounts, depositAccounts }), false);
+        }
+        catch (e) { }
+    }, [loaded, savingsHistory, goalName, goalAmount, goalCurrent, userName, withdrawAccounts, depositAccounts]);
+    useEffect(() => {
+        (async () => {
+            try {
+                const r = await window.storage.get("recent-searches", false);
+                if (r)
+                    setRecentSearches(JSON.parse(r.value));
+            }
+            catch (e) {
+                setRecentSearches([]);
+            }
+        })();
+    }, []);
+    const saveRecentSearches = async (list) => {
+        setRecentSearches(list);
+        try {
+            await window.storage.set("recent-searches", JSON.stringify(list), false);
+        }
+        catch (e) { }
+    };
+    const addRecentSearch = (term) => {
+        if (!term.trim())
+            return;
+        saveRecentSearches([term, ...recentSearches.filter((t) => t !== term)].slice(0, 10));
+    };
+    const removeRecentSearch = (term) => saveRecentSearches(recentSearches.filter((t) => t !== term));
+    const clearRecentSearches = () => saveRecentSearches([]);
+    const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(""), 1000); };
+    const addToCart = (productId, qty = 1) => {
+        setCart((prev) => {
+            const existing = prev.find((c) => c.productId === productId);
+            if (existing)
+                return prev.map((c) => (c.productId === productId ? { ...c, qty: c.qty + qty } : c));
+            return [...prev, { productId, qty }];
+        });
+        showToast("장바구니에 담았어요");
+    };
+    const removeFromCart = (productId) => setCart((prev) => prev.filter((c) => c.productId !== productId));
+    const changeQty = (productId, delta) => setCart((prev) => prev.map((c) => (c.productId === productId ? { ...c, qty: Math.max(1, c.qty + delta) } : c)));
+    const toggleWishlist = (productId) => setWishlist((prev) => (prev.includes(productId) ? prev.filter((id) => id !== productId) : [...prev, productId]));
+    const cartItems = cart.map((c) => ({ ...c, product: ALL_PRODUCTS.find((p) => p.id === c.productId) })).filter((c) => c.product);
+    const cartTotal = cartItems.reduce((s, c) => s + c.product.price * c.qty, 0);
+    const cartCount = cartItems.reduce((s, c) => s + c.qty, 0);
+    const openProduct = (productId) => go({ screen: "productDetail", productId });
+    const confirmPayment = () => {
+        const now = new Date();
+        setSavingsHistory((prev) => [{ ts: now.getTime(), date: `${now.getMonth() + 1}월 ${now.getDate()}일`, time: fmtTime(now), amount: cartTotal, cats: cartItems.map((c) => c.product.categoryName) }, ...prev]);
+        setLastSaved(cartTotal);
+        setGoalCurrent((g) => g + cartTotal);
+        setCart([]);
+        go("delivery");
+    };
+    const applyGoal = (name, amount) => { setGoalName(name); setGoalAmount(amount); };
+    // NOTE: window.confirm() is blocked/ignored inside sandboxed artifact iframes,
+    // which silently returned false and made the old reset button do nothing.
+    // A real in-app modal (ConfirmModal) replaces it below.
+    const [showResetConfirm, setShowResetConfirm] = useState(false);
+    const requestReset = () => setShowResetConfirm(true);
+    const performReset = () => {
+        // deep-clone defaults so the seed data itself is never mutated by later use
+        const freshHistory = DEFAULTS.savingsHistory.map((h) => ({ ...h }));
+        setCart([]);
+        setWishlist([]);
+        setToast("");
+        setAddress({ name: "", phone: "", addr: "", request: "", requestCustom: "" });
+        setPayMethod("account");
+        setSavingsHistory(freshHistory);
+        setLastSaved(0);
+        setUserName(DEFAULTS.userName);
+        setGoalName(DEFAULTS.goalName);
+        setGoalAmount(DEFAULTS.goalAmount);
+        setGoalCurrent(DEFAULTS.goalCurrent);
+        setWithdrawAccounts([]);
+        setDepositAccounts([]);
+        setSearchQuery("");
+        setSearchInput("");
+        setSearchSubmitted(false);
+        clearRecentSearches();
+        setShowResetConfirm(false);
+        goRoot("home");
+        showToast("체험 데이터를 초기화했어요");
+    };
+    const runSearch = (term) => { setSearchQuery(term); setSearchSubmitted(true); addRecentSearch(term); };
+    const searchResults = useMemo(() => {
+        if (!searchQuery.trim())
+            return [];
+        const q = searchQuery.trim().toLowerCase();
+        return ALL_PRODUCTS.filter((p) => p.name.toLowerCase().includes(q));
+    }, [searchQuery]);
+    let body;
+    switch (screen) {
+        case "splash":
+            body = React.createElement(SplashScreen, null);
+            break;
+        case "home":
+            body = React.createElement(HomeScreen, { go: go, goRoot: goRoot, cartCount: cartCount, topCat: topCategoryOf(savingsHistory), totalSavings: monthTotalOf(savingsHistory), todaySavings: todaySavings, goalName: goalName, goalAmount: goalAmount, goalCurrent: goalCurrent });
+            break;
+        case "category":
+            body = React.createElement(CategoryScreen, { categoryId: current.categoryId, goBack: goBack, goRoot: goRoot, openProduct: openProduct, cartCount: cartCount, nav: nav });
+            break;
+        case "productDetail":
+            body = React.createElement(ProductDetailScreen, { productId: current.productId, wishlist: wishlist, toggleWishlist: toggleWishlist, addToCart: addToCart, goBack: goBack, goRoot: goRoot, cartCount: cartCount, nav: nav });
+            break;
+        case "wishlist":
+            body = React.createElement(WishlistScreen, { wishlist: wishlist, openProduct: openProduct, goRoot: goRoot, cartCount: cartCount });
+            break;
+        case "cart":
+            body = React.createElement(CartScreen, { cartItems: cartItems, cartTotal: cartTotal, changeQty: changeQty, removeFromCart: removeFromCart, goRoot: goRoot, go: go, cartCount: cartCount });
+            break;
+        case "addressInput":
+            body = React.createElement(AddressInputScreen, { address: address, setAddress: setAddress, payMethod: payMethod, setPayMethod: setPayMethod, go: go, goBack: goBack, cartCount: cartCount, goRoot: goRoot });
+            break;
+        case "orderConfirm":
+            body = React.createElement(OrderConfirmScreen, { cartItems: cartItems, cartTotal: cartTotal, address: address, payMethod: payMethod, confirmPayment: confirmPayment, goBack: goBack, cartCount: cartCount, goRoot: goRoot });
+            break;
+        case "delivery":
+            body = React.createElement(DeliveryScreen, { go: go, cartCount: cartCount, goRoot: goRoot });
+            break;
+        case "deliveryComplete":
+            body = React.createElement(DeliveryCompleteScreen, { go: go, cartCount: cartCount, goRoot: goRoot });
+            break;
+        case "savingsComplete":
+            body = React.createElement(SavingsCompleteScreen, { lastSaved: lastSaved, totalSavings: totalSavings, goalCurrent: goalCurrent, goalAmount: goalAmount, savingsHistoryLen: savingsHistory.length, go: go, goRoot: goRoot, cartCount: cartCount });
+            break;
+        case "report":
+        case "consumptionReport":
+            body = React.createElement(ConsumptionReportScreen, { lastSaved: lastSaved, totalSavings: totalSavings, savingsHistory: savingsHistory, go: go, goRoot: goRoot, cartCount: cartCount });
+            break;
+        case "carbonReport":
+            body = React.createElement(CarbonReportScreen, { savingsHistory: savingsHistory, goRoot: goRoot, cartCount: cartCount });
+            break;
+        case "goalEdit":
+            body = React.createElement(GoalEditScreen, { goalName: goalName, goalAmount: goalAmount, applyGoal: applyGoal, goBack: goBack, cartCount: cartCount, goRoot: goRoot });
+            break;
+        case "my":
+            body = React.createElement(MyScreen, { userName: userName, setUserName: setUserName, level: level, totalSavings: totalSavings, savingsHistory: savingsHistory, goalCurrent: goalCurrent, goalAmount: goalAmount, goalName: goalName, go: go, goRoot: goRoot, resetAll: requestReset, cartCount: cartCount });
+            break;
+        case "accountManage":
+            body = React.createElement(AccountManageScreen, { go: go, goBack: goBack, goRoot: goRoot, cartCount: cartCount, withdrawCount: withdrawAccounts.length, depositCount: depositAccounts.length });
+            break;
+        case "withdrawAccounts":
+            body = React.createElement(AccountListScreen, { kind: "withdraw", accounts: withdrawAccounts, setAccounts: setWithdrawAccounts, go: go, goBack: goBack, goRoot: goRoot, cartCount: cartCount });
+            break;
+        case "depositAccounts":
+            body = React.createElement(AccountListScreen, { kind: "deposit", accounts: depositAccounts, setAccounts: setDepositAccounts, go: go, goBack: goBack, goRoot: goRoot, cartCount: cartCount });
+            break;
+        case "addAccount":
+            body = React.createElement(AddAccountScreen, { key: current.kind, kind: current.kind, accounts: current.kind === "withdraw" ? withdrawAccounts : depositAccounts, setAccounts: current.kind === "withdraw" ? setWithdrawAccounts : setDepositAccounts, goBack: goBack, goRoot: goRoot, cartCount: cartCount });
+            break;
+        case "createSavings":
+            body = React.createElement(CreateSavingsScreen, { setDepositAccounts: setDepositAccounts, goBack: goBack, goRoot: goRoot, cartCount: cartCount, showToast: showToast });
+            break;
+        case "notifications":
+            body = React.createElement(NotificationsScreen, { goRoot: goRoot, cartCount: cartCount });
+            break;
+        case "search":
+            body = React.createElement(SearchScreen, { searchInput: searchInput, setSearchInput: setSearchInput, searchQuery: searchQuery, searchSubmitted: searchSubmitted, setSearchSubmitted: setSearchSubmitted, searchResults: searchResults, recentSearches: recentSearches, runSearch: runSearch, clearRecentSearches: clearRecentSearches, removeRecentSearch: removeRecentSearch, openProduct: openProduct, goBack: goBack });
+            break;
+        default:
+            body = React.createElement(HomeScreen, { go: go, goRoot: goRoot, cartCount: cartCount, topCat: topCategoryOf(savingsHistory), totalSavings: monthTotalOf(savingsHistory), todaySavings: todaySavings, goalName: goalName, goalAmount: goalAmount, goalCurrent: goalCurrent });
+    }
+    return (React.createElement("div", { className: "w-full h-screen flex items-center justify-center", style: { background: "#DADFE2" } },
+        React.createElement("style", null, `
+        * { word-break: keep-all; overflow-wrap: break-word; }
+      `),
+        React.createElement("div", { className: "relative w-full max-w-[430px] h-full sm:h-[880px] sm:rounded-[36px] overflow-hidden shadow-2xl", style: { background: C.bg } },
+            React.createElement(Toast, { message: toast }),
+            React.createElement(ConfirmModal, { open: showResetConfirm, title: "\uCCB4\uD5D8 \uB370\uC774\uD130\uB97C \uCD08\uAE30\uD654\uD560\uAE4C\uC694?", description: "\uC9C0\uAE08\uAE4C\uC9C0 \uC313\uC778 \uC801\uAE08 \uB0B4\uC5ED, \uC7A5\uBC14\uAD6C\uB2C8, \uAD00\uC2EC\uC0C1\uD488, \uBC30\uC1A1\uC9C0, \uBAA9\uD45C, \uC774\uB984, \uAC80\uC0C9 \uAE30\uB85D \uB4F1 \uC870\uC791\uD558\uAC70\uB098 \uBCC0\uACBD\uD55C \uBAA8\uB4E0 \uB370\uC774\uD130\uAC00 \uCC98\uC74C \uC0C1\uD0DC\uB85C \uB418\uB3CC\uC544\uAC00\uC694.", confirmLabel: "\uCD08\uAE30\uD654", onConfirm: performReset, onCancel: () => setShowResetConfirm(false) }),
+            body)));
+}
+ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));
+</script>
+</body></html>
